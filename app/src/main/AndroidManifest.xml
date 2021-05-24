@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name="Hospital.DetailsHospitals"></activity>
+        <activity android:name="Hospital.Databeds" />
+        <activity android:name="Hospital.Login" />
+        <activity android:name="Hospital.Register" />
+        <activity android:name="Hospital.RandL" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

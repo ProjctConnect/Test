@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/factory"
         app:layout_constraintVertical_bias="0.069" />
 
     <TextView
@@ -54,14 +54,14 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/patient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.677"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/hospital"
         android:layout_width="0dp"
         android:layout_height="89dp"
         android:layout_marginStart="16dp"
@@ -76,7 +76,7 @@
         app:srcCompat="@drawable/building" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/patient"
         android:layout_width="0dp"
         android:layout_height="116dp"
         android:layout_marginTop="128dp"
@@ -89,7 +89,7 @@
         app:srcCompat="@drawable/patient" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/factory"
         android:layout_width="0dp"
         android:layout_height="140dp"
         android:layout_marginTop="72dp"
@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/hospital"
         app:layout_constraintVertical_bias="0.127"
         app:srcCompat="@drawable/industry" />
 
@@ -114,11 +114,11 @@
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/hospital"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/patient" />
 
     <TextView
         android:id="@+id/textView4"
@@ -132,10 +132,10 @@
         android:text="HOSPITAL"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/factory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/hospital"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
