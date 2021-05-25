@@ -81,8 +81,8 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
         cityName = (TextView) findViewById(R.id.city_name);
         String country=countryName.getText().toString();
 
-         ref=FirebaseDatabase.getInstance().getReference("HOSPITAL DETAILS");
-               ref .child(countryName.getText().toString()).
+         ref=FirebaseDatabase.getInstance().getReference("").child("HOSPITAL DETAILS")
+               .child(countryName.getText().toString()).
                  child(stateNameTextView.getText().toString()).
                  child(cityName.getText().toString());
 

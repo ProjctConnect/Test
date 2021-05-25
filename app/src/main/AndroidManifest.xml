@@ -14,8 +14,6 @@
         <activity android:name="HOSPITAL.LOG" />
         <activity android:name="HOSPITAL.REG" />
         <activity android:name="HOSPITAL.REGandLOG" />
-        <activity android:name="USER.otpscreen" />
-        <activity android:name="USER.otp" />
         <activity android:name="USER.details" />
         <activity android:name="USER.register" />
         <activity android:name="USER.R_AND_L" />
