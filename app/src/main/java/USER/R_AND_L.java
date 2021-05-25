@@ -18,13 +18,8 @@ public class R_AND_L extends AppCompatActivity {
         setContentView(R.layout.activity_r__a_n_d__l);
         Button register=findViewById(R.id.regm);
         Button login=findViewById(R.id.loged);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-        login.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),register.class);
