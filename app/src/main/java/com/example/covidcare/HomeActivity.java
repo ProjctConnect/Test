@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import Hospital.RandL;
+import HOSPITAL.REGandLOG;
 import USER.R_AND_L;
 
 public class HomeActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         hospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RandL.class);
+                Intent intent = new Intent(getApplicationContext(), REGandLOG.class);
                 startActivity(intent);
             }
         });

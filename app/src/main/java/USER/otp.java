@@ -23,7 +23,7 @@ public class otp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_otp);
         continuebutton=findViewById(R.id.next);
         phone=findViewById(R.id.phone);
 

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name="USER.otpscreen"></activity>
+        <activity android:name="HOSPITAL.DATABEDS"></activity>
+        <activity android:name="HOSPITAL.HOSPITALDETAILS" />
+        <activity android:name="HOSPITAL.LOG" />
+        <activity android:name="HOSPITAL.REG" />
+        <activity android:name="HOSPITAL.REGandLOG" />
+        <activity android:name="USER.otpscreen" />
         <activity android:name="USER.otp" />
         <activity android:name="USER.details" />
         <activity android:name="USER.register" />
