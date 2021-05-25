@@ -17,7 +17,7 @@ public class RandL extends AppCompatActivity {
         setContentView(R.layout.activity_rand_l);
 
         Button Reg = findViewById(R.id.reg);
-        Button Login = findViewById(R.id.login);
+        Button Login = findViewById(R.id.log);
 
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override

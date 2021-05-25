@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name="USER.otpscreen"></activity>
+        <activity android:name="USER.otp" />
+        <activity android:name="USER.details" />
+        <activity android:name="USER.register" />
+        <activity android:name="USER.R_AND_L" />
+        <activity android:name=".MainActivity2" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

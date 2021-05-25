@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Hospital.RandL">
+    tools:context="USER.R_AND_L">
 
     <Button
-        android:id="@+id/log"
+        android:id="@+id/loged"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGIN"
@@ -20,7 +19,7 @@
         app:layout_constraintVertical_bias="0.623" />
 
     <Button
-        android:id="@+id/reg"
+        android:id="@+id/regm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="REGISTER"
