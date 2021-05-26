@@ -10,17 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.covidcare.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,35 +54,34 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
     public static List<City> cityObject;
     Button adddata;
     EditText hospname, address;
-    Spinner spinner;
-    ValueEventListener listener;
-    ArrayAdapter<String> adapter;
-    ArrayList<String > spinnerdatalist;
     DatabaseReference ref;
-
-
+    private ListView listView;
+    Button check;
+    ArrayList<String> list;
+    ArrayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        check=findViewById(R.id.check);
 
-        spinner=(Spinner)findViewById(R.id.spinner);
-
-
-        countryName = (TextView)findViewById(R.id.countryNameTextView);
-        stateNameTextView = (TextView)findViewById(R.id.state_name);
-        cityName = (TextView) findViewById(R.id.city_name);
+         listView=findViewById(R.id.listview);
+       list=new ArrayList<>();
+         adapter=new ArrayAdapter<String>(this,R.layout.list_item,list);
+         listView.setAdapter(adapter);
+        countryName = (TextView)findViewById(R.id.pickCountry);
+        stateNameTextView = (TextView)findViewById(R.id.pickState);
+        cityName = (TextView) findViewById(R.id.pick_city);
         String country=countryName.getText().toString();
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                retrivedata(countryName.getText().toString(),stateNameTextView.getText().toString(),cityName.getText().toString());
+            }
+        });
 
-         ref=FirebaseDatabase.getInstance().getReference("").child("HOSPITAL DETAILS")
-               .child(countryName.getText().toString()).
-                 child(stateNameTextView.getText().toString()).
-                 child(cityName.getText().toString());
 
-
-
-        spinnerdatalist =new ArrayList<>();
-        adapter=new ArrayAdapter<String>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,spinnerdatalist);
         initView();
         // get state from assets JSON
         try {
@@ -111,17 +103,18 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
         setListener();
         setCountryListener();
         setCityListener();
-        spinner.setAdapter(adapter);
-        retrivedata();
+
 
 
     }
-    public  void retrivedata(){
-        listener = ref.addValueEventListener(new ValueEventListener() {
+    public void  retrivedata(String toString, String toString1, String toString2){
+        ref=FirebaseDatabase.getInstance().getReference().child("HOSPITAL DETAILS").child(toString).child(toString1).child(toString2);
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot item:snapshot.getChildren()){
-                    spinnerdatalist.add(item.getValue().toString());
+                list.clear();
+                for(DataSnapshot snap:snapshot.getChildren()){
+                    list.add(snap.getValue().toString());
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -132,6 +125,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
             }
         });
     }
+
 
 
 
