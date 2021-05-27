@@ -10,14 +10,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.covidcare.HomeActivity;
 import com.example.covidcare.R;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -30,29 +35,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import USER.details;
 
-public class REG extends AppCompatActivity  {
+public class REG extends AppCompatActivity {
     Button gsignin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=123;
     FirebaseAuth mAuth= FirebaseAuth.getInstance();
-    public  String personEmail;
-    DatabaseReference ref1;
+    public String perrmail;
+    GoogleApiClient asi;
 
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user!=null){
-            Intent intent = new Intent(getApplicationContext(),DATABEDS.class);
-            startActivity(intent);
-        }
 
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +60,7 @@ public class REG extends AppCompatActivity  {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         gsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,20 +115,25 @@ public class REG extends AppCompatActivity  {
     }
 
     private void updateUI(FirebaseUser user) {
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(REG.this);
-        if(acct!=null){
-            personEmail = acct.getEmail();
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(REG.this);
+            if (acct!=null){
+                perrmail =  acct.getEmail();
+            }
 
-        }
+            Intent intent=new Intent(getApplicationContext(), HOSPITALDETAILS.class);
+            intent.putExtra("Email",perrmail);
+            startActivity(intent);
+            finish();
 
-        Intent intent=new Intent(getApplicationContext(), HOSPITALDETAILS.class);
-
-        startActivity(intent);
-        finish();
     }
 
 
 
-        }
+
+
+
+    }
+
+
 
 

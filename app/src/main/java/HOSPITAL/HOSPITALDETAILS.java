@@ -33,7 +33,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerListener, OnCountryPickerListener, OnCityPickerListener, AdapterView.OnItemSelectedListener {
 
@@ -54,6 +56,9 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     DatabaseReference ref;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     public String citynamenext;
+    private String gmail;
+    public String parts1;
+
 
 
 
@@ -69,8 +74,6 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         countryName = findViewById(R.id.countryNameTextView);
         stateNameTextView = findViewById(R.id.state_name);
         cityName = (TextView) findViewById(R.id.city_name);
-
-        ref = database.getReference("HOSPITAL DETAILS");
 
         // initialize view
         initView();
@@ -113,10 +116,8 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
 
              Intent intent = new Intent(getApplicationContext(),DATABEDS.class);
              intent.putExtra("keyname",toString2);
-             intent.putExtra("keyname2",hop);FirebaseDatabase fire = FirebaseDatabase.getInstance();
-
-
-        startActivity(intent);
+             intent.putExtra("keyname2",hop);
+             startActivity(intent);
 
     }
 

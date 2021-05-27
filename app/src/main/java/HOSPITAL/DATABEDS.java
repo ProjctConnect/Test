@@ -3,6 +3,7 @@ package HOSPITAL;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,14 +27,8 @@ import java.util.Map;
 public class DATABEDS extends AppCompatActivity {
      Button save;
      EditText add,norbed,oxybed;
-
      DocumentReference doc;
-     public String personEmail;
-
-
-
-
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d_a_t_a_b_e_d_s);
@@ -41,9 +36,6 @@ public class DATABEDS extends AppCompatActivity {
         add = findViewById(R.id.dress);
         norbed = findViewById(R.id.normalbed);
         oxybed = findViewById(R.id.oxybed);
-
-
-
         String city = getIntent().getStringExtra("keyname");
         String hosp = getIntent().getStringExtra("keyname2");
         String mal = getIntent().getStringExtra("Email");
@@ -64,10 +56,17 @@ public class DATABEDS extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(DATABEDS.this, "Successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),Showdet.class);
+                        intent.putExtra("add",ad);
+                        intent.putExtra("norm",nor);
+                        intent.putExtra("oxyg",oxy);
+                        startActivity(intent);
                     }
                 });
 
             }
+
+
         });
 
 
