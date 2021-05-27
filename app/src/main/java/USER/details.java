@@ -3,6 +3,7 @@ package USER;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -78,6 +79,16 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
             @Override
             public void onClick(View v) {
                 retrivedata(countryName.getText().toString(),stateNameTextView.getText().toString(),cityName.getText().toString());
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String hosp= listView.getItemAtPosition(position).toString();
+                Intent intent=new Intent(getApplicationContext(),content.class);
+                intent.putExtra("hosp",hosp);
+                intent.putExtra("city",cityName.getText().toString());
+                startActivity(intent);
             }
         });
 
