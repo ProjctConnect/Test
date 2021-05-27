@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covidcare.R;
@@ -14,7 +15,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -22,14 +25,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import USER.details;
 
-public class REG extends AppCompatActivity {
+public class REG extends AppCompatActivity  {
     Button gsignin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=123;
     FirebaseAuth mAuth= FirebaseAuth.getInstance();
+    public  String personEmail;
+    DatabaseReference ref1;
+
+
 
     @Override
     protected void onStart() {
@@ -62,7 +71,11 @@ public class REG extends AppCompatActivity {
                 signIn();
             }
         });
-    }  private void signIn() {
+    }
+
+
+
+    private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -106,8 +119,20 @@ public class REG extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(REG.this);
+        if(acct!=null){
+            personEmail = acct.getEmail();
+
+        }
+
         Intent intent=new Intent(getApplicationContext(), HOSPITALDETAILS.class);
+
         startActivity(intent);
+        finish();
     }
 
-}
+
+
+        }
+
+

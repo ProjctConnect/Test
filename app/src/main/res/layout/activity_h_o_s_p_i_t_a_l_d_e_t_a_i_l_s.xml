@@ -91,21 +91,6 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/addOFhosp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="184dp"
-            android:background="@drawable/square"
-            android:ems="10"
-            android:hint="ENTER  FULL ADDRESS OF HOSPITAL"
-            android:inputType="textPostalAddress"
-            android:padding="10dp"
-            android:textColorHint="#8F0C0B0B" />
-
-        <EditText
             android:id="@+id/hospname"
             android:layout_width="match_parent"
             android:layout_height="53dp"

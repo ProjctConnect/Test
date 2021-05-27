@@ -1,6 +1,8 @@
 package HOSPITAL;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +39,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
 
     public static int countryID, stateID;
     private Button pickStateButton, pickCountry, pickCity;
-    private TextView stateNameTextView, countryName,countryCode, countryPhoneCode, countryCurrency, cityName;
+    private TextView stateNameTextView, countryName,countryCode,countryPhoneCode,countryCurrency,cityName;
     private ImageView flagImage;
     // Pickers
     private CountryPicker countryPicker;
@@ -51,6 +53,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     EditText hospname, address;
     DatabaseReference ref;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public String citynamenext;
 
 
 
@@ -62,7 +65,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
 
         adddata = findViewById(R.id.addata);
         hospname = findViewById(R.id.hospname);
-        address = findViewById(R.id.addOFhosp);
+
         countryName = findViewById(R.id.countryNameTextView);
         stateNameTextView = findViewById(R.id.state_name);
         cityName = (TextView) findViewById(R.id.city_name);
@@ -104,9 +107,16 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     private void savevalue(String toString, String toString1, String toString2) {
 
             String hop = hospname.getText().toString();
-            String add = address.getText().toString();
-            ref.child(toString).child(toString1).child(toString2).child(hop).setValue(add);
-        Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
+            String id = ref.push().getKey();
+            ref.child(toString).child(toString1).child(toString2).child(id).setValue(hop);
+            Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
+
+             Intent intent = new Intent(getApplicationContext(),DATABEDS.class);
+             intent.putExtra("keyname",toString2);
+             intent.putExtra("keyname2",hop);FirebaseDatabase fire = FirebaseDatabase.getInstance();
+
+
+        startActivity(intent);
 
     }
 
@@ -284,7 +294,6 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         for (int j = 0; j < events.length(); j++) {
             JSONObject cit = events.getJSONObject(j);
             City cityData = new City();
-
             cityData.setCityId(Integer.parseInt(cit.getString("id")));
             cityData.setCityName(cit.getString("name"));
             cityData.setStateId(Integer.parseInt(cit.getString("state_id")));
