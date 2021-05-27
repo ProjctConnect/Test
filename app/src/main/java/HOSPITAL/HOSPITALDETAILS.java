@@ -74,6 +74,8 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         countryName = findViewById(R.id.countryNameTextView);
         stateNameTextView = findViewById(R.id.state_name);
         cityName = (TextView) findViewById(R.id.city_name);
+        ref=database.getReference("HOSPITAL DETAILS");
+        gmail=getIntent().getStringExtra("Email");
 
         // initialize view
         initView();
@@ -117,6 +119,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
              Intent intent = new Intent(getApplicationContext(),DATABEDS.class);
              intent.putExtra("keyname",toString2);
              intent.putExtra("keyname2",hop);
+             intent.putExtra("Email",gmail);
              startActivity(intent);
 
     }

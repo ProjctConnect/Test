@@ -28,6 +28,7 @@ public class DATABEDS extends AppCompatActivity {
      Button save;
      EditText add,norbed,oxybed;
      DocumentReference doc;
+     public String mailid;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class DATABEDS extends AppCompatActivity {
                 data.put("Address of My Hospital",ad);
                 data.put("Total no of Normal Beds",nor);
                 data.put("Total no of Oxygen Beds",oxy);
-
+                mailid=getIntent().getStringExtra("Email");
 
                 FirebaseFirestore mfire = FirebaseFirestore.getInstance();
                 mfire.collection(city).document(hosp).set(data, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -60,6 +61,7 @@ public class DATABEDS extends AppCompatActivity {
                         intent.putExtra("add",ad);
                         intent.putExtra("norm",nor);
                         intent.putExtra("oxyg",oxy);
+                        intent.putExtra("Email",mailid);
                         startActivity(intent);
                     }
                 });
