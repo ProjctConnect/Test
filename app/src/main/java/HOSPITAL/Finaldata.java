@@ -38,6 +38,8 @@ public class Finaldata extends AppCompatActivity {
         setContentView(R.layout.activity_finaldata);
         noofN1 = findViewById(R.id.noofnorbeds1);
         noofO1 = findViewById(R.id.noofoxybeds2);
+        mod1 = findViewById(R.id.mod1);
+        lout1 = findViewById(R.id.Logout1);
         googleMail = getIntent().getStringExtra("GsignMail");
         String[] parts = googleMail.split("(?=@)");
         parts11 = parts[0];
@@ -63,7 +65,7 @@ public class Finaldata extends AppCompatActivity {
         mod1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),DATABEDS.class);
+                Intent intent1 = new Intent(getApplicationContext(),HomeActivity.class);
                 startActivity(intent1);
                 finish();
             }
