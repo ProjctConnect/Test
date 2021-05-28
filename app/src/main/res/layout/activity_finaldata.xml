@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="HOSPITAL.Showdet">
-
+    tools:context="HOSPITAL.Finaldata">
     <TextView
         android:id="@+id/textView11"
         android:layout_width="239dp"
@@ -20,39 +19,30 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="211dp"
-        android:layout_height="57dp"
+        android:layout_width="221dp"
+        android:layout_height="61dp"
+        android:text="TOTAL NO OF OXYGEN BEDS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="205dp"
-        android:layout_height="59dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.38" />
-
-    <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/noofnorbeds1"
         android:layout_width="56dp"
         android:layout_height="55dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134"
-        tools:layout_editor_absoluteX="302dp" />
+        app:layout_constraintVertical_bias="0.119" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="56dp"
-        android:layout_height="45dp"
+        android:id="@+id/noofoxybeds2"
+        android:layout_width="49dp"
+        android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
@@ -60,14 +50,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.24" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="64dp"
-        android:layout_height="33dp"
+    <Button
+        android:id="@+id/mod1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modify"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/Logout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

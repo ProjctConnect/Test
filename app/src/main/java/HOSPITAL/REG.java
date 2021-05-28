@@ -40,7 +40,7 @@ public class REG extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN=123;
     FirebaseAuth mAuth= FirebaseAuth.getInstance();
-    public String perrmail;
+    private String perrmail;
     GoogleApiClient asi;
 
 
