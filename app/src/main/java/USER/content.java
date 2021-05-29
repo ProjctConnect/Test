@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.example.covidcare.R;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,15 +25,13 @@ public class content extends AppCompatActivity {
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-               if(documentSnapshot.exists()){
-                   name.setText(documentSnapshot.getString("Address of My Hospital") );
-                   //+" NORMAL BEDS/n "+documentSnapshot.getString("Total no of Normal Beds")+"OXYGEN CYLINDER \n   "+documentSnapshot.getString("Total no of Oxygen Beds")
-               beds.setText(documentSnapshot.getString("Total no of Normal Beds"));
-               oxygen.setText(documentSnapshot.getString("Total no of Oxygen Beds"));
-               }
+                if(documentSnapshot.exists()){
+                    name.setText(documentSnapshot.getString("Address of My Hospital") );
+                    //+" NORMAL BEDS/n "+documentSnapshot.getString("Total no of Normal Beds")+"OXYGEN CYLINDER \n   "+documentSnapshot.getString("Total no of Oxygen Beds")
+                    beds.setText(documentSnapshot.getString("Total no of Normal Beds"));
+                    oxygen.setText(documentSnapshot.getString("Total no of Oxygen Beds"));
+                }
             }
         });
-
     }
-
 }
