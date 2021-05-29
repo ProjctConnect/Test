@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covidcare.HomeActivity;
-import com.example.covidcare.MainActivity;
 import com.example.covidcare.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -39,18 +38,23 @@ public class Showdet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showbeds);
 
-        noofN = findViewById(R.id.noofnorbeds1);
-        noofO = findViewById(R.id.noofoxybeds2);
-        mod = findViewById(R.id.mod1);
-        lout = findViewById(R.id.Logout1);
+        noofN = findViewById(R.id.noofnorbeds14);
+        noofO = findViewById(R.id.noofoxybeds26);
+        mod = findViewById(R.id.mod10);
+        lout = findViewById(R.id.Logout19);
         String dress = getIntent().getStringExtra("add");
         String mal = getIntent().getStringExtra("norm");
         String gen = getIntent().getStringExtra("oxyg");
+        String hospital = getIntent().getStringExtra("losp");
+        String citt = getIntent().getStringExtra("cityy");
 
         Map<String, Object> data = new HashMap<>();
+        data.put("City of MY Hospital",citt);
+        data.put("My Hospital Name",hospital);
         data.put("Address of My Hospital",dress);
         data.put("Total no of Normal Beds",mal);
         data.put("Total no of Oxygen Beds",gen);
+
 
         gmail = getIntent().getStringExtra("Email");
         String[] parts = gmail.split("(?=@)");

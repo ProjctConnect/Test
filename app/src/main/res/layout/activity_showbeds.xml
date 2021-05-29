@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.24" />
 
     <TextView
-        android:id="@+id/noofnorbeds1"
+        android:id="@+id/noofnorbeds14"
         android:layout_width="56dp"
         android:layout_height="55dp"
         android:layout_marginEnd="64dp"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.119" />
 
     <TextView
-        android:id="@+id/noofoxybeds2"
+        android:id="@+id/noofoxybeds26"
         android:layout_width="49dp"
         android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.24" />
 
     <Button
-        android:id="@+id/mod1"
+        android:id="@+id/mod10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Modify"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/Logout1"
+        android:id="@+id/Logout19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOGOUT"

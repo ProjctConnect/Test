@@ -11,12 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.covidcare.R;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -33,10 +29,10 @@ public class DATABEDS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_d_a_t_a_b_e_d_s);
-        save = findViewById(R.id.sav);
-        add = findViewById(R.id.dress);
-        norbed = findViewById(R.id.normalbed);
-        oxybed = findViewById(R.id.oxybed);
+        save = findViewById(R.id.sav1);
+        add = findViewById(R.id.dress1);
+        norbed = findViewById(R.id.norbed123);
+        oxybed = findViewById(R.id.oxybed123);
         String city = getIntent().getStringExtra("keyname");
         String hosp = getIntent().getStringExtra("keyname2");
         String mal = getIntent().getStringExtra("Email");
@@ -47,6 +43,8 @@ public class DATABEDS extends AppCompatActivity {
                 String ad = add.getText().toString();
                 String nor = norbed.getText().toString();
                 String oxy = oxybed.getText().toString();
+                data.put("City of MY Hospital",city);
+                data.put("My Hospital Name",hosp);
                 data.put("Address of My Hospital",ad);
                 data.put("Total no of Normal Beds",nor);
                 data.put("Total no of Oxygen Beds",oxy);
@@ -62,6 +60,8 @@ public class DATABEDS extends AppCompatActivity {
                         intent.putExtra("norm",nor);
                         intent.putExtra("oxyg",oxy);
                         intent.putExtra("Email",mailid);
+                        intent.putExtra("losp",hosp);
+                        intent.putExtra("cityy",city);
                         startActivity(intent);
                     }
                 });

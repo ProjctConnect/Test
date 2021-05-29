@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covidcare.HomeActivity;
-import com.example.covidcare.MainActivity;
 import com.example.covidcare.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,14 +31,15 @@ public class Finaldata extends AppCompatActivity {
     Button mod1,lout1;
     GoogleApiClient gac1;
     String parts11;
+    String tty,losptal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finaldata);
-        noofN1 = findViewById(R.id.noofnorbeds1);
-        noofO1 = findViewById(R.id.noofoxybeds2);
-        mod1 = findViewById(R.id.mod1);
-        lout1 = findViewById(R.id.Logout1);
+        noofN1 = findViewById(R.id.noofnorbeds14);
+        noofO1 = findViewById(R.id.noofoxybeds26);
+        mod1 = findViewById(R.id.mod10);
+        lout1 = findViewById(R.id.Logout19);
         googleMail = getIntent().getStringExtra("GsignMail");
         String[] parts = googleMail.split("(?=@)");
         parts11 = parts[0];
@@ -51,6 +51,8 @@ public class Finaldata extends AppCompatActivity {
                 String add1 = snapshot.child("Address of My Hospital").getValue(String.class);
                 String norm1 = snapshot.child("Total no of Normal Beds").getValue(String.class);
                 String oxy2 = snapshot.child("Total no of Oxygen Beds").getValue(String.class);
+                losptal = snapshot.child("My Hospital Name").getValue(String.class);
+                tty = snapshot.child("City of MY Hospital").getValue(String.class);
 
                 noofN1.setText(norm1);
                 noofO1.setText(oxy2);
@@ -65,7 +67,10 @@ public class Finaldata extends AppCompatActivity {
         mod1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),HomeActivity.class);
+                Intent intent1 = new Intent(getApplicationContext(),Modify.class);
+                intent1.putExtra("hospmail",parts11);
+                intent1.putExtra("cityname1",tty);
+                intent1.putExtra("hospname234",losptal);
                 startActivity(intent1);
                 finish();
             }
@@ -78,6 +83,7 @@ public class Finaldata extends AppCompatActivity {
                     public void onResult(@NonNull Status status) {
                         if(status.isSuccess()){
                             Intent intent2 =new Intent(getApplicationContext(), HomeActivity.class);
+
                             startActivity(intent2);
                             finish();
                         }else {
