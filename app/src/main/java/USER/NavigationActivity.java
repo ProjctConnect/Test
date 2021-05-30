@@ -48,6 +48,12 @@ public class NavigationActivity extends AppCompatActivity {
                         startActivity(intent1);
                         break;
 
+                    case R.id.update:
+                        Intent intent2=new Intent(getApplicationContext(),UpdateUser.class);
+                        intent2.putExtra("gmail",gmail);
+                        startActivity(intent2);
+                        break;
+
                    
 
 

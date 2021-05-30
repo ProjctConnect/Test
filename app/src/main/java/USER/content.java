@@ -2,7 +2,9 @@ package USER;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,11 +16,17 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class content extends AppCompatActivity {
     TextView name,beds,oxygen;
     Button book;
     String hospital;
+    Integer i;
+    String city;
     String patient;
+    DocumentReference ref;
 
     String names,age,phone,address,email;
     String hospita;
@@ -32,9 +40,9 @@ public class content extends AppCompatActivity {
         beds=findViewById(R.id.beds);
         oxygen=findViewById(R.id.oxygen);
         book=findViewById(R.id.book);
+        city=getIntent().getStringExtra("city");
         hospita=getIntent().getStringExtra("hosp");
-        DocumentReference ref= FirebaseFirestore.getInstance().collection(getIntent().
-                getStringExtra("city")).document(hospita);
+        ref= FirebaseFirestore.getInstance().collection(city).document(hospita);
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -68,9 +76,17 @@ public class content extends AppCompatActivity {
             public void onClick(View v) {
                 senEmail();
                 Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(),ConfirmationActivity.class);
+                intent.putExtra("city",city);
+                intent.putExtra("hospital",hospita);
+                intent.putExtra("email",hospital);
+                startActivity(intent);
+
             }
         });
     }
+
+
 
 
     private void senEmail() {

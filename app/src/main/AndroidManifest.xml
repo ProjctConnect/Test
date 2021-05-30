@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
+        <activity android:name="USER.ConfirmationActivity"></activity>
+        <activity android:name="USER.UpdateUser" />
         <activity android:name="USER.LoginActivity" />
         <activity android:name="USER.NavigationActivity" />
         <activity android:name="USER.Showprofile" />
