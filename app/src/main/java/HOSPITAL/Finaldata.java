@@ -71,6 +71,7 @@ public class Finaldata extends AppCompatActivity {
                 intent1.putExtra("hospmail",parts11);
                 intent1.putExtra("cityname1",tty);
                 intent1.putExtra("hospname234",losptal);
+                intent1.putExtra("gmail1",googleMail);
                 startActivity(intent1);
                 finish();
             }

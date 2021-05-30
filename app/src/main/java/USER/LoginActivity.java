@@ -27,7 +27,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import HOSPITAL.REG;
 
 
-public class register extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     Button btngoogle;
     public String mail;
     GoogleSignInClient mGoogleSignInClient;
@@ -38,9 +38,9 @@ public class register extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register2);
+        setContentView(R.layout.activity_login3);
 
-        btngoogle=findViewById(R.id.btn);
+        btngoogle=findViewById(R.id.gs3);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -99,13 +99,14 @@ public class register extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(register.this);
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(LoginActivity.this);
         if (acct!=null){
             mail =  acct.getEmail();
         }
-        Intent intent=new Intent(getApplicationContext(),CreateProfile.class);
-        intent.putExtra("gmail",mail);
+        Intent intent=new Intent(getApplicationContext(),NavigationActivity.class);
+        intent.putExtra("gmailid",mail);
         startActivity(intent);
+        finish();
     }
 
 

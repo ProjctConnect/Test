@@ -37,6 +37,7 @@ public class DATABEDS extends AppCompatActivity {
         String hosp = getIntent().getStringExtra("keyname2");
         String mal = getIntent().getStringExtra("Email");
         Map<String, Object> data = new HashMap<>();
+        mailid=getIntent().getStringExtra("Email");
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,8 @@ public class DATABEDS extends AppCompatActivity {
                 data.put("Address of My Hospital",ad);
                 data.put("Total no of Normal Beds",nor);
                 data.put("Total no of Oxygen Beds",oxy);
-                mailid=getIntent().getStringExtra("Email");
+                data.put("Gmail of Hospital",mailid);
+
 
                 FirebaseFirestore mfire = FirebaseFirestore.getInstance();
                 mfire.collection(city).document(hosp).set(data, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {

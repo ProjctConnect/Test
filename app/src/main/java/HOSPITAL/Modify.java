@@ -24,7 +24,7 @@ import java.util.Map;
 public class Modify extends AppCompatActivity {
      EditText bednor,bedoxy,dress1;
      Button sav1;
-     String hosptal,gsigninn,ttyci;
+     String hosptal,gsigninn,ttyci,googlemail;
      DatabaseReference ref12;
      FirebaseDatabase db12 =  FirebaseDatabase.getInstance();
     @Override
@@ -38,6 +38,7 @@ public class Modify extends AppCompatActivity {
         hosptal = getIntent().getStringExtra("hospname234");
         gsigninn = getIntent().getStringExtra("hospmail");
         ttyci = getIntent().getStringExtra("cityname1");
+        googlemail=getIntent().getStringExtra("gmail1");
 
         Map<String, Object> data = new HashMap<>();
 
@@ -53,6 +54,7 @@ public class Modify extends AppCompatActivity {
                 data.put("Address of My Hospital",ad1);
                 data.put("Total no of Normal Beds",nor1);
                 data.put("Total no of Oxygen Beds",oxy1);
+                data.put("Gmail of Hospital",googlemail);
 
                 FirebaseFirestore mfire1 = FirebaseFirestore.getInstance();
                 mfire1.collection(ttyci).document(hosptal).set(data, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -67,6 +69,7 @@ public class Modify extends AppCompatActivity {
                         int2.putExtra("nam4",hosptal);
                         int2.putExtra("nam5",ttyci);
                         int2.putExtra("nam6",gsigninn);
+                        int2.putExtra("nam7",googlemail);
                         startActivity(int2);
                         finish();
 

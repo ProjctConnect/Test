@@ -56,6 +56,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
     Button adddata;
     EditText hospname, address;
     DatabaseReference ref;
+    String gmail;
     private ListView listView;
     Button check;
     ArrayList<String> list;
@@ -75,6 +76,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
         stateNameTextView = (TextView)findViewById(R.id.pickState);
         cityName = (TextView) findViewById(R.id.pick_city);
         String country=countryName.getText().toString();
+        gmail=getIntent().getStringExtra("gmail");
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
                 Intent intent=new Intent(getApplicationContext(),content.class);
                 intent.putExtra("hosp",hosp);
                 intent.putExtra("city",cityName.getText().toString());
+                intent.putExtra("gmail",gmail);
                 startActivity(intent);
             }
         });

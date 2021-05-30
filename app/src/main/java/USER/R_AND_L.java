@@ -24,6 +24,16 @@ public class R_AND_L extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),register.class);
                 startActivity(intent);
+
+
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent1);
             }
         });
     }

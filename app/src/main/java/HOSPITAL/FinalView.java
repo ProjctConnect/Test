@@ -20,7 +20,7 @@ public class FinalView extends AppCompatActivity {
 
     TextView nor13,oxy13;
     Button mod123,logout124;
-    String mal34,gen34,gmail09;
+    String mal34,gen34,gmail09,gmail;
     DatabaseReference ref12;
     FirebaseDatabase db12 =  FirebaseDatabase.getInstance();
 
@@ -39,6 +39,7 @@ public class FinalView extends AppCompatActivity {
         mal34 = getIntent().getStringExtra("nam1");
         gen34 = getIntent().getStringExtra("nam2");
         gmail09 = getIntent().getStringExtra("nam6");
+        gmail=getIntent().getStringExtra("nam7");
 
         Map<String, Object> data = new HashMap<>();
         data.put("City of MY Hospital",citt);
@@ -46,6 +47,7 @@ public class FinalView extends AppCompatActivity {
         data.put("Address of My Hospital",dress);
         data.put("Total no of Normal Beds",mal34);
         data.put("Total no of Oxygen Beds",gen34);
+        data.put("Gmail of Hospital",gmail);
 
         ref12 = db12.getReference("GMAIL OF HOSPITALS");
         ref12.child(gmail09).setValue(data);
@@ -61,6 +63,7 @@ public class FinalView extends AppCompatActivity {
                 intent12.putExtra("hospmail",gmail09);
                 intent12.putExtra("hospname234",hospital);
                 intent12.putExtra("cityname1",citt);
+                intent12.putExtra("gmail1",gmail);
                 startActivity(intent12);
                 finish();
             }

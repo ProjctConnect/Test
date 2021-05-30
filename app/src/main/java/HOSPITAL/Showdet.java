@@ -47,6 +47,7 @@ public class Showdet extends AppCompatActivity {
         String gen = getIntent().getStringExtra("oxyg");
         String hospital = getIntent().getStringExtra("losp");
         String citt = getIntent().getStringExtra("cityy");
+        gmail = getIntent().getStringExtra("Email");
 
         Map<String, Object> data = new HashMap<>();
         data.put("City of MY Hospital",citt);
@@ -54,9 +55,10 @@ public class Showdet extends AppCompatActivity {
         data.put("Address of My Hospital",dress);
         data.put("Total no of Normal Beds",mal);
         data.put("Total no of Oxygen Beds",gen);
+        data.put("Gmail of Hospital",gmail);
 
 
-        gmail = getIntent().getStringExtra("Email");
+
         String[] parts = gmail.split("(?=@)");
         parts1 = parts[0];
         ref1 = database.getReference("GMAIL OF HOSPITALS");
