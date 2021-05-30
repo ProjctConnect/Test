@@ -45,6 +45,19 @@ public class content extends AppCompatActivity {
                     beds.setText(documentSnapshot.getString("Total no of Normal Beds"));
                     oxygen.setText(documentSnapshot.getString("Total no of Oxygen Beds"));
                     hospital=documentSnapshot.getString("Gmail of Hospital");
+                    DocumentReference ref1=FirebaseFirestore.getInstance().collection("user").document(patient);
+
+                    ref1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            names=documentSnapshot.getString("name");
+                            age=documentSnapshot.getString("age");
+                            email=documentSnapshot.getString("email");
+                            phone=documentSnapshot.getString("phone");
+                            address=documentSnapshot.getString("address");
+
+                        }
+                    });
                 }
             }
         });
@@ -61,19 +74,7 @@ public class content extends AppCompatActivity {
 
 
     private void senEmail() {
-        DocumentReference ref1=FirebaseFirestore.getInstance().collection("user").document(patient);
 
-        ref1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                names=documentSnapshot.getString("name");
-                 age=documentSnapshot.getString("age");
-                 email=documentSnapshot.getString("email");
-                phone=documentSnapshot.getString("phone");
-                address=documentSnapshot.getString("address");
-
-            }
-        });
         String mEmail =hospital;
         String  mSubject = "Booking Notification";
         String mMessage = "A seat has been booked in your hospital\n"+"Name:"+names+"\nAge:"+age+"\nPhone Number:"+phone+"\nEmail:"+email+"\nAddress:"+address;
