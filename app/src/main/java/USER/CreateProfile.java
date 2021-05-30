@@ -144,9 +144,9 @@ public class CreateProfile extends AppCompatActivity {
                                 Map<String ,String > profile = new HashMap<>();
                                 profile.put("name",name);
                                 profile.put("age",age);
-                                profile.put("bio",bio);
+                                profile.put("phone",bio);
                                 profile.put("email",email);
-                                profile.put("website",website);
+                                profile.put("address",website);
                                 profile.put("url",downloadUri.toString());
 
                                 documentReference.set(profile)

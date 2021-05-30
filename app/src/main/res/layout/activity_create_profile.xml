@@ -45,7 +45,7 @@
         android:layout_margin="10dp"
         android:autoText="true"
         android:backgroundTint="@color/purple_200"
-        android:hint="Bio"
+        android:hint=" Phone Number"
         android:inputType="textPersonName"
         android:textColor="@color/white" />
 
@@ -67,7 +67,7 @@
         android:layout_margin="10dp"
         android:autoText="true"
         android:backgroundTint="@color/purple_200"
-        android:hint="Website"
+        android:hint="Address"
         android:inputType="textPersonName"
         android:textColor="@color/white" />
 
