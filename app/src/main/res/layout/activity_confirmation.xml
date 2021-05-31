@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context="USER.ConfirmationActivity">
 
+    <TextView
+        android:id="@+id/oxybed"
+        android:layout_width="213dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="231dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="115dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/normalbed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/normalbed"
+        android:layout_width="185dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="269dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oxybed" />
 </androidx.constraintlayout.widget.ConstraintLayout>
