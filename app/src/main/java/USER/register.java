@@ -102,6 +102,7 @@ public class register extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(register.this);
         if (acct!=null){
             mail =  acct.getEmail();
+
         }
         Intent intent=new Intent(getApplicationContext(),CreateProfile.class);
         intent.putExtra("gmail",mail);

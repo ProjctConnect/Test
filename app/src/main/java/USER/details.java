@@ -60,7 +60,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
     private ListView listView;
     Button check;
     ArrayList<String> list;
-    ArrayAdapter adapter;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -70,7 +70,8 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
 
          listView=findViewById(R.id.listview);
        list=new ArrayList<>();
-         adapter=new ArrayAdapter<String>(this,R.layout.list_item,list);
+         adapter=new ArrayAdapter<>(this,R.layout.custom_list,R.id.label,list);
+
          listView.setAdapter(adapter);
         countryName = (TextView)findViewById(R.id.pickCountry);
         stateNameTextView = (TextView)findViewById(R.id.pickState);
