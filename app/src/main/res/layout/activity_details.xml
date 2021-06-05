@@ -161,7 +161,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="Check Hospitals"
                 android:textColor="#32E0C4"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 

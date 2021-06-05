@@ -12,45 +12,37 @@
         android:background="@drawable/cv1">
 
 
-
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="100dp"
             android:layout_height="80dp"
-            app:lottie_fileName="shield.json"
+            app:lottie_autoPlay="true"
             android:layout_marginTop="3dp"
-            app:lottie_loop="false"
-            app:lottie_autoPlay="true">
+            app:lottie_fileName="shield.json"
+            app:lottie_loop="false">
 
         </com.airbnb.lottie.LottieAnimationView>
+
+
         <TextView
             android:id="@+id/label"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:textSize="30dp"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_marginLeft="105dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hospital"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            android:textColor="#c0c0c0"
             android:layout_marginLeft="105dp"
-            android:layout_marginTop="45dp"/>
-
-
-
-
-
-
-
-
-
+            android:layout_marginTop="45dp"
+            android:text="Hospital"
+            android:textColor="#c0c0c0"
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
