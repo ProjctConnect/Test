@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.covidcare.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +23,7 @@ import java.util.HashMap;
 public class content extends AppCompatActivity {
     TextView name,beds,oxygen;
     Button book;
+    String pa;
     String hospital;
     Integer i;
     String city;
@@ -31,6 +34,8 @@ public class content extends AppCompatActivity {
     String names,age,phone,address,email;
     String hospita;
     String hospaddress;
+    DatabaseReference harsh;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +76,20 @@ public class content extends AppCompatActivity {
             }
         });
         patient=getIntent().getStringExtra("gmail");
+         pa=patient;
+        String [] java =patient.split("(?=@)");
+        String java1=java[0];
+        java.util.Map<String, Object> data = new HashMap<>();
+        data.put("hospital name",hospita);
+        data.put("address of hospital",hospaddress);
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                harsh=FirebaseDatabase.getInstance().getReference().child("BOOKING HISTORY").child(java1);
+                String id = harsh.push().getKey();
+
+                harsh.child(id).setValue(data);
                 senEmail();
                 Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getApplicationContext(),ConfirmationActivity.class);
@@ -83,8 +98,10 @@ public class content extends AppCompatActivity {
                 intent.putExtra("email",hospital);
                 startActivity(intent);
 
+
             }
         });
+
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +126,7 @@ public class content extends AppCompatActivity {
 
         javaMailAPI.execute();
 
-        String mEmail1 = patient;
+        String mEmail1 = pa;
         mSubject = "Booking request";
         mMessage = "A seat has been booked in"+hospita+"hospital\n"+"Address:"+hospaddress+"\n show this email in the hospital in order to claim your seats";
 
