@@ -9,7 +9,7 @@
             android:title="User Profile">
         </item>
         <item android:id="@+id/update"
-            android:icon="@drawable/ic_baseline_person_24"
+            android:icon="@drawable/ic_baseline_person_add_24"
             android:title="Update Profile">
         </item>
         <item android:id="@+id/searchhosp"
@@ -17,7 +17,7 @@
             android:title="Search Hospitals">
         </item>
         <item android:id="@+id/booking"
-            android:icon="@drawable/ic_baseline_local_hospital_24"
+            android:icon="@drawable/ic_baseline_access_time_24"
             android:title="Booking History">
         </item>
         </group>
