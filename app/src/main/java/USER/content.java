@@ -18,6 +18,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class content extends AppCompatActivity {
@@ -47,6 +50,13 @@ public class content extends AppCompatActivity {
         book=findViewById(R.id.book);
         city=getIntent().getStringExtra("city");
         hospita=getIntent().getStringExtra("hosp");
+        Date currentTime = Calendar.getInstance().getTime();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh.mm.ss aa");
+        String output = dateFormat.format(currentTime);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c.getTime());
+        Toast.makeText(getApplicationContext(),"Time Is :" + output, Toast.LENGTH_LONG).show();
         map=findViewById(R.id.map);
         ref= FirebaseFirestore.getInstance().collection(city).document(hospita);
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -80,14 +90,17 @@ public class content extends AppCompatActivity {
         String [] java =patient.split("(?=@)");
         String java1=java[0];
         java.util.Map<String, Object> data = new HashMap<>();
-        data.put("hospital name",hospita);
-        data.put("address of hospital",hospaddress);
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 harsh=FirebaseDatabase.getInstance().getReference().child("BOOKING HISTORY").child(java1);
                 String id = harsh.push().getKey();
+                data.put("hospitalname",hospita);
+                data.put("address",hospaddress);
+                data.put("time",output);
+                data.put("date",formattedDate);
+
 
                 harsh.child(id).setValue(data);
                 senEmail();

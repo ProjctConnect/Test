@@ -53,12 +53,18 @@ public class NavigationActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
 
+                    case R.id.booking:
+                        Intent intent3=new Intent(getApplicationContext(),BookingHistory.class);
+                        intent3.putExtra("gmail",gmail);
+                        startActivity(intent3);
+                        break;
+
                    
 
 
                     default:
-                        Intent intent3=new Intent(getApplicationContext(),NavigationActivity.class);
-                        startActivity(intent3);
+                        Intent intent4=new Intent(getApplicationContext(),NavigationActivity.class);
+                        startActivity(intent4);
                         break;
 
 
