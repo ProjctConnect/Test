@@ -13,6 +13,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="map_key" translatable="false">AIzaSyAFNXp7W8YUgBDXIRrJYo700mRjCjcFU_0</string>
 
 
 </resources>

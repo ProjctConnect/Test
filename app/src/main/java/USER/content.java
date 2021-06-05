@@ -17,7 +17,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class content extends AppCompatActivity {
     TextView name,beds,oxygen;
@@ -27,6 +26,7 @@ public class content extends AppCompatActivity {
     String city;
     String patient;
     DocumentReference ref;
+    Button map;
 
     String names,age,phone,address,email;
     String hospita;
@@ -42,6 +42,7 @@ public class content extends AppCompatActivity {
         book=findViewById(R.id.book);
         city=getIntent().getStringExtra("city");
         hospita=getIntent().getStringExtra("hosp");
+        map=findViewById(R.id.map);
         ref= FirebaseFirestore.getInstance().collection(city).document(hospita);
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -82,6 +83,14 @@ public class content extends AppCompatActivity {
                 intent.putExtra("email",hospital);
                 startActivity(intent);
 
+            }
+        });
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 =new Intent(getApplicationContext(), Map.class);
+                intent3.putExtra("address1",hospaddress);
+                startActivity(intent3);
             }
         });
     }
