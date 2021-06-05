@@ -2,6 +2,7 @@ package USER;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +59,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
     DatabaseReference ref;
     String gmail;
     private ListView listView;
-    Button check;
+    CardView check;
     ArrayList<String> list;
     ArrayAdapter<String> adapter;
     @Override
@@ -66,7 +67,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        check=findViewById(R.id.check);
+        check=(CardView) findViewById(R.id.check);
 
          listView=findViewById(R.id.listview);
        list=new ArrayList<>();
