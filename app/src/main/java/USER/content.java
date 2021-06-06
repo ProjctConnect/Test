@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class content extends AppCompatActivity {
     TextView name,beds,oxygen;
-    Button book;
+    Button book,book1;
     String pa;
     String hospital;
     Integer i;
@@ -48,6 +48,7 @@ public class content extends AppCompatActivity {
         beds=findViewById(R.id.beds);
         oxygen=findViewById(R.id.oxygen);
         book=findViewById(R.id.book);
+        book1 =  findViewById(R.id.oxybook);
         city=getIntent().getStringExtra("city");
         hospita=getIntent().getStringExtra("hosp");
         Date currentTime = Calendar.getInstance().getTime();
@@ -100,8 +101,6 @@ public class content extends AppCompatActivity {
                 data.put("address",hospaddress);
                 data.put("time",output);
                 data.put("date",formattedDate);
-
-
                 harsh.child(id).setValue(data);
                 senEmail();
                 Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();
@@ -114,6 +113,28 @@ public class content extends AppCompatActivity {
 
             }
         });
+        book1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                harsh=FirebaseDatabase.getInstance().getReference().child("BOOKING HISTORY").child(java1);
+                String id = harsh.push().getKey();
+                data.put("hospitalname",hospita);
+                data.put("address",hospaddress);
+                data.put("time",output);
+                data.put("date",formattedDate);
+                harsh.child(id).setValue(data);
+                senEmail();
+                Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(),confirmation2.class);
+                intent.putExtra("city",city);
+                intent.putExtra("hospital",hospita);
+                intent.putExtra("email",hospital);
+                startActivity(intent);
+
+
+            }
+        });
+
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
