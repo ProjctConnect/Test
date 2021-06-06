@@ -16,7 +16,7 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:orientation="vertical">
@@ -33,7 +33,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Date :"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -44,7 +44,7 @@
                     android:layout_marginTop="20dp"
                     android:text="Arya"
                     android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:text="Stark"
                     android:textColor="@color/black"
                     android:layout_marginTop="20dp"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
