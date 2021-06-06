@@ -101,6 +101,7 @@ public class content extends AppCompatActivity {
                 data.put("address",hospaddress);
                 data.put("time",output);
                 data.put("date",formattedDate);
+                data.put("type of bed booked","NORMAL BED");
                 harsh.child(id).setValue(data);
                 senEmail();
                 Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();
@@ -122,6 +123,7 @@ public class content extends AppCompatActivity {
                 data.put("address",hospaddress);
                 data.put("time",output);
                 data.put("date",formattedDate);
+                data.put("type of bed booked","OXYGEN BED");
                 harsh.child(id).setValue(data);
                 senEmail();
                 Toast.makeText(content.this, "Confirmation E-Mail has been sent", Toast.LENGTH_SHORT).show();

@@ -51,10 +51,6 @@ public class ConfirmationActivity extends AppCompatActivity {
                 newnormal = snapshot.child("Total no of Normal Beds").getValue(String.class);
                 norm=Integer.parseInt(newnormal);
 
-
-
-
-
                 if (norm<=0){
                     norm=0;
                 }else {
