@@ -22,7 +22,7 @@ public class R_AND_L extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),register.class);
+                Intent intent=new Intent(getApplicationContext(),Registration.class);
                 startActivity(intent);
 
 
@@ -32,7 +32,7 @@ public class R_AND_L extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent1=new Intent(getApplicationContext(),Login.class);
                 startActivity(intent1);
             }
         });

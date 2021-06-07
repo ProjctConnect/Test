@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.example.covidcare.R;
 
+import USER.Registration;
+
 public class REGandLOG extends AppCompatActivity {
 
     @Override
@@ -22,7 +24,7 @@ public class REGandLOG extends AppCompatActivity {
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),REG.class);
+                Intent intent1 = new Intent(getApplicationContext(), Registration.class);
                 startActivity(intent1);
             }
         });

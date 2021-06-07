@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name="USER.confirmation2"></activity>
+        <activity android:name="USER.Verification"></activity>
+        <activity android:name="USER.Login" />
+        <activity android:name="USER.Registration" />
+        <activity android:name="USER.confirmation2" />
         <activity android:name="USER.BookingHistory" />
 
         <meta-data
@@ -38,7 +41,6 @@
         <activity android:name="HOSPITAL.REG" />
         <activity android:name="HOSPITAL.REGandLOG" />
         <activity android:name="USER.details" />
-        <activity android:name="USER.register" />
         <activity android:name="USER.R_AND_L" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">

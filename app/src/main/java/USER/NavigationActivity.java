@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class NavigationActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class NavigationActivity extends AppCompatActivity {
         setUpToolbar();
         gmail=getIntent().getStringExtra("gmailid");
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
+        firebaseAuth=FirebaseAuth.getInstance();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,12 +62,20 @@ public class NavigationActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
 
+                    case R.id.logout:
+                        firebaseAuth.signOut();
+                        Intent intent4=new Intent(getApplicationContext(),R_AND_L.class);
+                        intent4.putExtra("gmail",gmail);
+                        startActivity(intent4);
+                        finish();
+                        break;
+
                    
 
 
                     default:
-                        Intent intent4=new Intent(getApplicationContext(),NavigationActivity.class);
-                        startActivity(intent4);
+                        Intent intent5=new Intent(getApplicationContext(),NavigationActivity.class);
+                        startActivity(intent5);
                         break;
 
 

@@ -15,6 +15,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import java.util.ArrayList;
 
 import HOSPITAL.REGandLOG;
+import USER.Login;
 import USER.R_AND_L;
 
 public class HomeActivity extends AppCompatActivity {

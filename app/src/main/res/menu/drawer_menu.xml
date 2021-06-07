@@ -20,6 +20,11 @@
             android:icon="@drawable/ic_baseline_access_time_24"
             android:title="Booking History">
         </item>
+
+        <item android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:title="Log Out">
+        </item>
         </group>
 
 
