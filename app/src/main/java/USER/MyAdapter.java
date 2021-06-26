@@ -40,6 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.time.setText(user.getTime());
         holder.date.setText(user.getDate());
         holder.hospital.setText(user.getHospitalname());
+        holder.type.setText(user.getType());
 
 
     }
@@ -51,7 +52,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView address, time, date,hospital;
+        TextView address, time, date,hospital,type;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             time = itemView.findViewById(R.id.time1);
             date = itemView.findViewById(R.id.date);
             hospital = itemView.findViewById(R.id.hospitalname);
+            type=itemView.findViewById(R.id.type);
 
         }
     }

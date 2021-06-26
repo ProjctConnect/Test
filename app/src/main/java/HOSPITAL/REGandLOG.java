@@ -24,7 +24,7 @@ public class REGandLOG extends AppCompatActivity {
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), Registration.class);
+                Intent intent1 = new Intent(getApplicationContext(), REG.class);
                 startActivity(intent1);
             }
         });

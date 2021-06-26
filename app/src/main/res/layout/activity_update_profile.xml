@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBackground"
+    android:orientation="vertical"
+    tools:context="USER.UpdateProfile">
+
+
+    <EditText
+        android:id="@+id/etname"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Name"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/etage"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <EditText
+        android:id="@+id/etnumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <EditText
+        android:id="@+id/etaddress"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <EditText
+        android:id="@+id/etmail"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+
+    <ImageView
+        android:id="@+id/etprofile"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        app:srcCompat="@drawable/ic_baseline_person_pin_24"
+        tools:srcCompat="@drawable/ic_baseline_person_pin_24" />
+
+    <Button
+        android:id="@+id/updateprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update" />
+
+
+</LinearLayout>

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covidcare.R;
@@ -22,7 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
     Button createacc,login;
     EditText mail,password;
-    String user;
+    String user,email;
+    TextView resetpassword;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -32,6 +35,7 @@ public class Login extends AppCompatActivity {
         createacc=findViewById(R.id.reglog);
         login=findViewById(R.id.login1);
         mail=findViewById(R.id.email);
+        resetpassword=findViewById(R.id.reset);
         password=findViewById(R.id.password);
         user=mail.getText().toString().trim();
         firebaseAuth=FirebaseAuth.getInstance();
@@ -46,29 +50,34 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mail.getText().toString().isEmpty()){
+                String gmail=mail.getText().toString().trim();
+                String password1=password.getText().toString().trim();
+                if (gmail.isEmpty()){
                     mail.setError("Enter E-Mail id");
                     return;
                 }
-                if (password.getText().toString().isEmpty()){
+                if (password1.isEmpty()){
                     password.setError("Enter Password");
                     return;
                 }
 
-                firebaseAuth.signInWithEmailAndPassword(mail.getText().toString().trim(),password.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.signInWithEmailAndPassword(gmail,password1).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            if(user.isEmailVerified()){
-                                Intent intent1 = new Intent(getApplicationContext(),NavigationActivity.class);
-                                intent1.putExtra("gmail",mail.getText().toString().trim());
-                                startActivity(intent1);
-                            }else{
-                                user.sendEmailVerification();
-                                Toast.makeText(Login.this, "verification link has been sent", Toast.LENGTH_SHORT).show();
-                            }
+                    public void onSuccess(AuthResult authResult) {
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if(user.isEmailVerified()){
+                            Intent intent1 = new Intent(getApplicationContext(),NavigationActivity.class);
+                            intent1.putExtra("gmailid",gmail);
+                            startActivity(intent1);
+                        }else{
+                            user.sendEmailVerification();
+                            Toast.makeText(Login.this, "verification link has been sent", Toast.LENGTH_SHORT).show();
                         }
+
+
+
+
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -81,16 +90,39 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        resetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               resetpassword();
+            }
+        });
+
+
+
+
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser()!=null){
-            Intent i=new Intent(getApplicationContext(),NavigationActivity.class);
-            i.putExtra("gmailid",mail.getText().toString());
-            startActivity(i);
-            finish();
+    private void resetpassword() {
+        String mailid=mail.getText().toString().trim();
+        if (mailid.isEmpty()){
+            mail.setError("Enter E-Mail");
+            return;
         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(mailid).matches()){
+            mail.setError("Provide Valid E-Mail ID");
+            return;
+        }
+        firebaseAuth.sendPasswordResetEmail(mailid).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(Login.this, "Password Reset Mail sent", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
     }
+
+
 }

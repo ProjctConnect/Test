@@ -11,11 +11,14 @@ import android.widget.ImageView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
 import HOSPITAL.REGandLOG;
 import USER.Login;
+import USER.NavigationActivity;
 import USER.R_AND_L;
 
 public class HomeActivity extends AppCompatActivity {
@@ -53,5 +56,28 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+
+
     }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        String patient="patient";
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            if (user.isEmailVerified()){
+                if (user.getDisplayName().equals(patient)){
+                    String gmail= user.getEmail();
+                    Intent i = new Intent(getApplicationContext(), NavigationActivity.class);
+                    i.putExtra("gmailid", gmail);
+                    startActivity(i);
+                }
+
+            }
+
+
+        }
+
+    }
+
 }

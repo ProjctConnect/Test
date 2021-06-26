@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBackground"
+    android:orientation="vertical"
+    tools:context="USER.Profile">
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/userage"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Age"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/usernumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Phone Number"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/useraddress"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Address"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/usermail"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="E-Mail"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Profile" />
+
+    <ImageView
+        android:id="@+id/profilephoto"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        app:srcCompat="@drawable/ic_baseline_person_pin_24"
+        tools:srcCompat="@drawable/ic_baseline_person_pin_24" />
+
+
+</LinearLayout>

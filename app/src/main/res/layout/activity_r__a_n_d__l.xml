@@ -52,7 +52,7 @@
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:background="@drawable/button"
+        android:background="@drawable/buttonbackground"
         android:text="REGISTER"
         android:textColor="#fff" />
 
@@ -75,7 +75,7 @@
         android:id="@+id/loged"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:background="@drawable/button"
+        android:background="@drawable/buttonbackground"
         android:text="LOGIN"
         android:textColor="#fff" />
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardBackground"
+    android:orientation="vertical"
+    tools:context="USER.Profile">
+
+
+    <TextView
+        android:id="@+id/tvname"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:hint="Name"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvage"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <TextView
+        android:id="@+id/tvnumber"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <TextView
+        android:id="@+id/tvaddress"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+    <TextView
+        android:id="@+id/tvmail"
+        android:layout_width="match_parent"
+        android:layout_height="51dp" />
+
+
+
+    <ImageView
+        android:id="@+id/tvprofile"
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        app:srcCompat="@drawable/ic_baseline_person_pin_24"
+        tools:srcCompat="@drawable/ic_baseline_person_pin_24" />
+
+
+</LinearLayout>

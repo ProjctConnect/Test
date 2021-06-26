@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class Registration extends AppCompatActivity {
 
@@ -42,6 +44,7 @@ public class Registration extends AppCompatActivity {
             }
         });
 
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,14 +70,21 @@ public class Registration extends AppCompatActivity {
                     return;
                 }
 
+
+
                 firebaseAuth.createUserWithEmailAndPassword(gmail,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
+                        String p="patient";
+                        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                        UserProfileChangeRequest profileChangeRequest=new UserProfileChangeRequest.Builder().setDisplayName(p).build();
+                        user.updateProfile(profileChangeRequest);
                         Intent intent=new Intent(getApplicationContext(),Verification.class);
                         intent.putExtra("gmail",gmail);
                         intent.putExtra("password",pass);
                         startActivity(intent);
                         finish();
+
 
 
                     }

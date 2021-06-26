@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.covidcare.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class R_AND_L extends AppCompatActivity {
 
@@ -37,4 +39,8 @@ public class R_AND_L extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 }

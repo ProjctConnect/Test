@@ -6,6 +6,13 @@ public class User {
     String time;
     String date;
     String address;
+    String type;
+
+
+    public String getType() {
+        return type;
+    }
+
 
 
     public String getHospitalname() {
@@ -23,6 +30,7 @@ public class User {
     public String getAddress() {
         return address;
     }
+
 
 
 

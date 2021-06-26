@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name="USER.Verification"></activity>
+        <activity android:name="USER.UpdateProfile"></activity>
+        <activity android:name="USER.Showuser" />
+        <activity android:name="USER.Profile" />
+        <activity android:name="USER.Guidelines" />
+        <activity android:name="USER.Verification" />
         <activity android:name="USER.Login" />
         <activity android:name="USER.Registration" />
         <activity android:name="USER.confirmation2" />
@@ -25,11 +30,8 @@
 
         <activity android:name="USER.Map" />
         <activity android:name="USER.ConfirmationActivity" />
-        <activity android:name="USER.UpdateUser" />
         <activity android:name="USER.LoginActivity" />
         <activity android:name="USER.NavigationActivity" />
-        <activity android:name="USER.Showprofile" />
-        <activity android:name="USER.CreateProfile" />
         <activity android:name="USER.content" />
         <activity android:name="HOSPITAL.FinalView" />
         <activity android:name="HOSPITAL.Modify" />

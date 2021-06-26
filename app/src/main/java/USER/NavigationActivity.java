@@ -11,6 +11,9 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
@@ -18,11 +21,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationActivity extends AppCompatActivity {
 
-    String gmail;
+    String gmail,name;
+    TextView textview5;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     FirebaseAuth firebaseAuth;
+    ImageView hospitals,update,guidelines,history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +35,52 @@ public class NavigationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_navigation);
         setUpToolbar();
         gmail=getIntent().getStringExtra("gmailid");
+        name=getIntent().getStringExtra("name");
+        hospitals=findViewById(R.id.im1);
+        update=findViewById(R.id.im2);
+        guidelines=findViewById(R.id.im3);
+        history=findViewById(R.id.im4);
+        textview5=findViewById(R.id.textView4);
+        textview5.setText(name);
+
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         firebaseAuth=FirebaseAuth.getInstance();
+        hospitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, details.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, UpdateProfile.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, BookingHistory.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
+        guidelines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, Guidelines.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -39,7 +88,7 @@ public class NavigationActivity extends AppCompatActivity {
                 {
                     case  R.id.showprofile:
 
-                        Intent intent = new Intent(NavigationActivity.this, Showprofile.class);
+                        Intent intent = new Intent(NavigationActivity.this, Showuser.class);
                         intent.putExtra("gmail",gmail);
                         startActivity(intent);
                         break;
@@ -51,7 +100,7 @@ public class NavigationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.update:
-                        Intent intent2=new Intent(getApplicationContext(),UpdateUser.class);
+                        Intent intent2=new Intent(getApplicationContext(),Profile.class);
                         intent2.putExtra("gmail",gmail);
                         startActivity(intent2);
                         break;
