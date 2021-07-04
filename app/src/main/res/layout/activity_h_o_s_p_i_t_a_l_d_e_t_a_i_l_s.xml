@@ -1,121 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context="HOSPITAL.HOSPITALDETAILS">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_height="60dp"
+        android:orientation="horizontal">
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:letterSpacing="0.03"
+            android:text="WELCOME!"
+            android:textColor="#0d6e6a"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
         <ImageView
             android:id="@+id/flag_image"
-            android:layout_width="140dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="150dp"
             android:background="@mipmap/ic_launcher" />
 
 
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/pickCountry"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="145dp"
-            android:background="@color/teal_700"
-            android:text="Pick Country" />
-
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/buttonsquare"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+            android:drawablePadding="10dp"
+            android:text="Select Country" />
         <TextView
             android:id="@+id/countryNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="50dp"
-            android:text="Country"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/f"
+            android:hint="Select  Country"
             android:textAlignment="center"
-            android:textSize="30dp"
+            android:textColor="#0B0808"
+            android:textColorHint="#39000000"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/pickState"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="200dp"
-            android:background="@color/teal_700"
-            android:text="Pick State" />
-
-
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/buttonsquare"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+            android:drawablePadding="10dp"
+            android:text="Select State" />
         <TextView
             android:id="@+id/state_name"
-            android:layout_width="184dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="210dp"
-            android:background="@drawable/round"
-            android:text="State"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/f"
+            android:textColorHint="#39000000"
+            android:hint="Select The State"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            android:textStyle="bold"
+            android:textColor="#120F0F"
+            android:textSize="20sp" />
 
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/pick_city"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="260dp"
-            android:background="@color/teal_700"
-            android:text="Pick City" />
+            android:layout_width="180dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/buttonsquare"
+            android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+            android:drawablePadding="10dp"
+            android:text="Select City" />
 
         <TextView
             android:id="@+id/city_name"
-            android:layout_width="188dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="270dp"
-            android:background="@drawable/round"
-            android:gravity="center"
-            android:text="City"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/f"
+            android:textColorHint="#39000000"
+            android:textAlignment="center"
+            android:hint="Select The City"
+            android:textStyle="bold"
+            android:textColor="#020101"
+            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/hospname"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="312dp"
-            android:background="@drawable/square"
-            android:ems="10"
-            android:hint="ENTER YOUR HOSPITAL NAME FULLY"
-            android:inputType="textPersonName"
-            android:paddingStart="10dp"
-            android:textColorHint="#8A000000" />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/hospname"
+        android:layout_width="336dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/square"
+        android:hint="Enter  Hospital Name"
+        android:inputType="text"
+        android:drawableStart="@drawable/ic_baseline_local_hospital_24"
+        android:drawablePadding="15dp"
+        android:paddingStart="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="#8F000000" />
 
-        <Button
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/addata"
-            android:layout_width="136dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="124dp"
-            android:layout_marginBottom="73dp"
-            android:background="@color/teal_700"
-            android:text="ADD DATA" />
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
+            android:background="#393E46"
+            android:text="check">
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Register Hospitals"
+                android:textColor="#32E0C4"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        app:lottie_fileName="consult.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

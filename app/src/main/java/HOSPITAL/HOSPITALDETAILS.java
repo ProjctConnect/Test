@@ -1,6 +1,7 @@
 package HOSPITAL;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     public static List<State> stateObject;
     // arrays of city object
     public static List<City> cityObject;
-    Button adddata;
+    CardView adddata;
     EditText hospname, address;
     DatabaseReference ref;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -75,7 +76,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         stateNameTextView = findViewById(R.id.state_name);
         cityName = (TextView) findViewById(R.id.city_name);
         ref=database.getReference("HOSPITAL DETAILS");
-        gmail=getIntent().getStringExtra("Email");
+        gmail=getIntent().getStringExtra("gmail");
 
         // initialize view
         initView();
@@ -116,7 +117,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
             ref.child(toString).child(toString1).child(toString2).child(id).setValue(hop);
             Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
 
-             Intent intent = new Intent(getApplicationContext(),DATABEDS.class);
+             Intent intent = new Intent(getApplicationContext(),HospitalProfile.class);
              intent.putExtra("keyname",toString2);
              intent.putExtra("keyname2",hop);
              intent.putExtra("Email",gmail);

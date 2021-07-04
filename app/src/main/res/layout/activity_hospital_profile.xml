@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="USER.UpdateProfile">
-
+    tools:context="HOSPITAL.HospitalProfile">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,17 +28,20 @@
 
     </LinearLayout>
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/etprofile"
-        android:layout_width="96dp"
+        android:id="@+id/profilephoto1"
+        android:layout_width="100dp"
         android:layout_gravity="center"
-        android:layout_height="96dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_baseline_person_24"
         app:civ_border_color="@color/teal_200"
-        app:civ_border_width="2dp" />
+        app:civ_border_width="2dp">
+
+    </de.hdodenhof.circleimageview.CircleImageView>
+
     <com.github.ybq.android.spinkit.SpinKitView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/progressbar2"
+        android:id="@+id/progressbar11"
         style="@style/SpinKitView.Large.Circle"
         android:layout_width="50dp"
         android:layout_height="25dp"
@@ -47,7 +49,7 @@
         app:SpinKit_Color="@color/teal_200"
         android:visibility="invisible"/>
     <EditText
-        android:id="@+id/etname"
+        android:id="@+id/username1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -55,16 +57,15 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/round_border"
-        android:hint="Enter your name"
+        android:hint="Enter  Hospital Name"
         android:inputType="text"
-        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawableStart="@drawable/ic_baseline_local_hospital_24"
         android:drawablePadding="15dp"
         android:paddingStart="15dp"
         android:textColor="@color/black"
         android:textColorHint="#8F000000" />
-
     <EditText
-        android:id="@+id/etage"
+        android:id="@+id/usernumber1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -72,23 +73,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/round_border"
-        android:hint="Enter your age"
-        android:inputType="number"
-        android:drawableStart="@drawable/ic_baseline_person_24"
-        android:drawablePadding="15dp"
-        android:paddingStart="15dp"
-        android:textColor="@color/black"
-        android:textColorHint="#8F000000" />
-    <EditText
-        android:id="@+id/etnumber"
-        android:layout_width="336dp"
-        android:layout_height="43dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/round_border"
-        android:hint="Enter your Mobile Number"
+        android:hint="Enter Hospital Mobile Number"
         android:inputType="phone"
         android:drawableStart="@drawable/ic_baseline_phone_android_24"
         android:drawablePadding="15dp"
@@ -96,7 +81,7 @@
         android:textColor="@color/black"
         android:textColorHint="#8F000000" />
     <EditText
-        android:id="@+id/etaddress"
+        android:id="@+id/useraddress1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -104,7 +89,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/round_border"
-        android:hint="Enter your Address"
+        android:hint="Enter Hospital Address"
         android:inputType="textPostalAddress"
         android:drawableStart="@drawable/ic_baseline_location_on_24"
         android:drawablePadding="15dp"
@@ -112,7 +97,7 @@
         android:textColor="@color/black"
         android:textColorHint="#8F000000" />
     <EditText
-        android:id="@+id/etmail"
+        android:id="@+id/usermail1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -121,44 +106,35 @@
         android:layout_marginEnd="25dp"
         android:focusable="false"
         android:background="@drawable/round_border"
-        android:hint="Enter your E-Mail ID"
+        android:hint="Enter Hospital E-Mail ID"
         android:inputType="textEmailAddress"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="15dp"
         android:paddingStart="15dp"
         android:textColor="@color/black"
         android:textColorHint="#8F000000" />
-
     <Button
-        android:id="@+id/updateprofile"
+        android:id="@+id/profile1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@drawable/buttonbackground"
-        android:text="Update Profile"
+        android:text="Save Profile"
         android:textColor="#fff" />
+
+
+
+
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="15dp"
-        app:lottie_fileName="lapupdate.json"
+        app:lottie_fileName="health.json"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
 
 
-
-
-
-
-
 </LinearLayout>
-
-
-
-
-
-
-

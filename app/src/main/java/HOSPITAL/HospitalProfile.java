@@ -1,4 +1,4 @@
-package USER;
+package HOSPITAL;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +27,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -35,91 +36,57 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UpdateProfile extends AppCompatActivity {
-    EditText username,userage,usernumber,useraddress,usermail;
+import USER.NavigationActivity;
+
+public class HospitalProfile extends AppCompatActivity {
+    EditText usernumber,useraddress;
+    TextView username,usermail;
     String name,number,age,address,mail;
-    ImageView profilephoto;
-    Button update;
-    StorageReference storageReference;
-    DocumentReference documentReference;
+    Button save;
+    String city;
     ProgressBar progressBar;
-    String gmailid;
+    ImageView profilephoto;
+    DocumentReference documentReference;
+    StorageReference storageReference;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_profile);
-        username=findViewById(R.id.etname);
-        userage=findViewById(R.id.etage);
-        usernumber=findViewById(R.id.etnumber);
-        useraddress=findViewById(R.id.etaddress);
-        usermail=findViewById(R.id.etmail);
-        profilephoto=findViewById(R.id.etprofile);
-        progressBar = (ProgressBar)findViewById(R.id.progressbar2);
+        setContentView(R.layout.activity_hospital_profile);
+        username=findViewById(R.id.username1);
+        usernumber=findViewById(R.id.usernumber1);
+        useraddress=findViewById(R.id.useraddress1);
+        usermail=findViewById(R.id.usermail1);
+        save=findViewById(R.id.profile1);
+        profilephoto=findViewById(R.id.profilephoto1);
+        storageReference=FirebaseStorage.getInstance().getReference();
+        progressBar = (ProgressBar)findViewById(R.id.progressbar11);
         Sprite doubleBounce = new Wave();
         progressBar.setIndeterminateDrawable(doubleBounce);
-        update=findViewById(R.id.updateprofile);
-        documentReference= FirebaseFirestore.getInstance().collection("user").document();
-        gmailid=getIntent().getStringExtra("gmail");
-        usermail.setText(gmailid);
-        progressBar.setVisibility(View.VISIBLE);
 
-        storageReference =FirebaseStorage.getInstance().getReference().child(gmailid+"/profile.jpg");
-        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profilephoto, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
-                });
-            }
-        });
-
-        documentReference=FirebaseFirestore.getInstance().collection("user").document(gmailid);
-        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String name=documentSnapshot.getString("name");
-                String age=documentSnapshot.getString("age");
-                String number=documentSnapshot.getString("phone");
-                String address=documentSnapshot.getString("address");
-                String mail=documentSnapshot.getString("email");
-                username.setText(name);
-                userage.setText(age);
-                usernumber.setText(number);
-                useraddress.setText(address);
-                usermail.setText(mail);
-
-            }
-        });
-
-        gmailid=getIntent().getStringExtra("gmail");
+        name=getIntent().getStringExtra("keyname2");
+        mail=getIntent().getStringExtra("Email");
+        city=getIntent().getStringExtra("keyname");
+        username.setText(name);
+        usermail.setText(mail);
+        StorageReference profile=storageReference.child(mail+"/hospitalprofile.jpg");
 
 
 
 
 
 
-
-        update.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 name=username.getText().toString();
                 number=usernumber.getText().toString();
-                age=userage.getText().toString();
                 address=useraddress.getText().toString();
                 mail=usermail.getText().toString();
 
@@ -129,10 +96,6 @@ public class UpdateProfile extends AppCompatActivity {
                 }
                 if (number.isEmpty() || number.length()!=10){
                     usernumber.setError("Enter your Mobile Number");
-                    return;
-                }
-                if (age.isEmpty()){
-                    userage.setError("Enter your Age");
                     return;
                 }
                 if (address.isEmpty()){
@@ -145,20 +108,20 @@ public class UpdateProfile extends AppCompatActivity {
                 }
                 Map<String, Object> userprofile = new HashMap<>();
                 userprofile.put("name",name);
-                userprofile.put("age",age);
+                userprofile.put("email",mail);
                 userprofile.put("phone",number);
                 userprofile.put("address",address);
-                userprofile.put("email",mail);
-                documentReference= FirebaseFirestore.getInstance().collection("user").document(gmailid);
+                documentReference= FirebaseFirestore.getInstance().collection("hospital").document(mail);
                 documentReference.set(userprofile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        Toast.makeText(UpdateProfile.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(),NavigationActivity.class);
-                        intent.putExtra("gmailid",gmailid);
-                        intent.putExtra("name",name);
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(), DATABEDS.class);
+                        intent.putExtra("Email",mail);
+                        intent.putExtra("keyname2",name);
+                        intent.putExtra("keyname",city);
+                        intent.putExtra("address",address);
                         startActivity(intent);
-                        finish();
 
 
                     }
@@ -179,6 +142,7 @@ public class UpdateProfile extends AppCompatActivity {
 
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -193,7 +157,7 @@ public class UpdateProfile extends AppCompatActivity {
     }
 
     private void uploaddatatofirebase(Uri imageuri) {
-        final  StorageReference file=storageReference;
+        final  StorageReference file=storageReference.child(mail+"/hospitalprofile.jpg");
         file.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -204,6 +168,7 @@ public class UpdateProfile extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
                                 progressBar.setVisibility(View.INVISIBLE);
+
                             }
 
                             @Override
@@ -218,10 +183,8 @@ public class UpdateProfile extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(UpdateProfile.this, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
-
-

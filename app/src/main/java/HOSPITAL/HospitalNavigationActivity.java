@@ -1,4 +1,4 @@
-package USER;
+package HOSPITAL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,7 +19,14 @@ import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class NavigationActivity extends AppCompatActivity {
+import USER.BookingHistory;
+import USER.Guidelines;
+import USER.R_AND_L;
+import USER.Showuser;
+import USER.UpdateProfile;
+import USER.details;
+
+public class HospitalNavigationActivity extends AppCompatActivity {
 
     String gmail,name;
     TextView textview5;
@@ -32,21 +39,19 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.activity_hospital_navigation);
         setUpToolbar();
-        gmail=getIntent().getStringExtra("gmailid");
-        name=getIntent().getStringExtra("name");
-        hospitals=findViewById(R.id.im1);
-        update=findViewById(R.id.im2);
-        guidelines=findViewById(R.id.im3);
-        history=findViewById(R.id.im4);
-
-        navigationView = (NavigationView) findViewById(R.id.navigation_menu);
+        gmail=getIntent().getStringExtra("mailid");
+        hospitals=findViewById(R.id.im11);
+        update=findViewById(R.id.im21);
+        guidelines=findViewById(R.id.im31);
+        history=findViewById(R.id.im41);
+        navigationView = (NavigationView) findViewById(R.id.navigation_menu1);
         firebaseAuth=FirebaseAuth.getInstance();
         hospitals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, details.class);
+                Intent intent = new Intent(getApplicationContext(), details.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -55,7 +60,7 @@ public class NavigationActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, UpdateProfile.class);
+                Intent intent = new Intent(getApplicationContext(), UpdateProfile.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -64,7 +69,7 @@ public class NavigationActivity extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, BookingHistory.class);
+                Intent intent = new Intent(getApplicationContext(), BookingHistory.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -73,7 +78,7 @@ public class NavigationActivity extends AppCompatActivity {
         guidelines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NavigationActivity.this, Guidelines.class);
+                Intent intent = new Intent(getApplicationContext(), Guidelines.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -84,44 +89,44 @@ public class NavigationActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
-                    case  R.id.showprofile:
+                    case  R.id.hospitalshowprofile:
 
-                        Intent intent = new Intent(NavigationActivity.this, Showuser.class);
+                        Intent intent = new Intent(getApplicationContext(), HospitalShowProfile.class);
                         intent.putExtra("gmail",gmail);
                         startActivity(intent);
                         break;
 
-                    case R.id.searchhosp:
-                        Intent intent1=new Intent(getApplicationContext(),details.class);
+                    case R.id.hospitalupdate:
+                        Intent intent1=new Intent(getApplicationContext(),HospitalShowProfile.class);
                         intent1.putExtra("gmail",gmail);
                         startActivity(intent1);
                         break;
 
-                    case R.id.update:
-                        Intent intent2=new Intent(getApplicationContext(),UpdateProfile.class);
-                        intent2.putExtra("gmail",gmail);
+                    case R.id.modifydata:
+                        Intent intent2=new Intent(getApplicationContext(),Showdet.class);
+                        intent2.putExtra("mailid",gmail);
                         startActivity(intent2);
                         break;
 
-                    case R.id.booking:
-                        Intent intent3=new Intent(getApplicationContext(),BookingHistory.class);
+                    case R.id.hospitalcovidguideline:
+                        Intent intent3=new Intent(getApplicationContext(),HospitalShowProfile.class);
                         intent3.putExtra("gmail",gmail);
                         startActivity(intent3);
                         break;
 
-                    case R.id.logout:
+                    case R.id.hospitallogout:
                         firebaseAuth.signOut();
-                        Intent intent4=new Intent(getApplicationContext(),R_AND_L.class);
+                        Intent intent4=new Intent(getApplicationContext(), REGandLOG.class);
                         intent4.putExtra("gmail",gmail);
                         startActivity(intent4);
                         finish();
                         break;
 
-                   
+
 
 
                     default:
-                        Intent intent5=new Intent(getApplicationContext(),NavigationActivity.class);
+                        Intent intent5=new Intent(getApplicationContext(), USER.NavigationActivity.class);
                         startActivity(intent5);
                         break;
 
@@ -147,8 +152,8 @@ public class NavigationActivity extends AppCompatActivity {
         });
     }
     public void setUpToolbar() {
-        drawerLayout = findViewById(R.id.drawerLayout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawerLayout11);
+        Toolbar toolbar = findViewById(R.id.toolbar11);
         setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.nav_open , R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);

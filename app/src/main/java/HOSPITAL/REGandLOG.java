@@ -24,7 +24,7 @@ public class REGandLOG extends AppCompatActivity {
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), REG.class);
+                Intent intent1 = new Intent(getApplicationContext(), HospitalRegister.class);
                 startActivity(intent1);
             }
         });
@@ -32,7 +32,7 @@ public class REGandLOG extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(),LOG.class);
+                Intent intent2 = new Intent(getApplicationContext(),HospitalLogin.class);
                 startActivity(intent2);
             }
         });

@@ -151,7 +151,9 @@ public class confirmation2 extends AppCompatActivity {
 
     private void createPDF(String username,String userage,String hospital,String address,String time,String date) throws FileNotFoundException {
         String pdpath= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file=new File(pdpath,"OxygenBed.pdf");
+        double b = (double) (Math.random()*(99999-1+1)+1);
+        String s=Double. toString(b);
+        File file=new File(pdpath,s.concat("o2bed.pdf"));
         OutputStream outputStream=new FileOutputStream(file);
         PdfWriter writer=new PdfWriter(file);
         PdfDocument pdfDocument=new PdfDocument(writer);

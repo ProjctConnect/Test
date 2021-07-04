@@ -1,4 +1,4 @@
-package USER;
+package HOSPITAL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class Login extends AppCompatActivity {
+import USER.NavigationActivity;
+import USER.Registration;
+
+public class HospitalLogin extends AppCompatActivity {
     Button createacc,login;
     EditText mail,password;
     String user,email;
@@ -31,18 +34,18 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
-        createacc=findViewById(R.id.reglog);
-        login=findViewById(R.id.login1);
-        mail=findViewById(R.id.email);
-        resetpassword=findViewById(R.id.reset);
-        password=findViewById(R.id.password);
+        setContentView(R.layout.activity_hospital_login);
+        createacc=findViewById(R.id.reglog1);
+        login=findViewById(R.id.login11);
+        mail=findViewById(R.id.email1);
+        resetpassword=findViewById(R.id.reset1);
+        password=findViewById(R.id.password1);
         user=mail.getText().toString().trim();
         firebaseAuth=FirebaseAuth.getInstance();
         createacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),Registration.class);
+                Intent intent=new Intent(getApplicationContext(), HospitalRegister.class);
                 startActivity(intent);
                 finish();
             }
@@ -66,20 +69,20 @@ public class Login extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
 
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        String patient="patient";
+                        String hospital="Hospital";
                         if(user.isEmailVerified()){
-                            if (user.getDisplayName().equals(patient)){
-                                Intent intent1 = new Intent(getApplicationContext(),NavigationActivity.class);
-                                intent1.putExtra("gmailid",gmail);
+                            if (user.getDisplayName().equals(hospital)){
+                                Intent intent1 = new Intent(getApplicationContext(), HospitalNavigationActivity.class);
+                                intent1.putExtra("mailid",gmail);
                                 startActivity(intent1);
 
                             }else {
-                                Toast.makeText(Login.this, "You belong to hospital end", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(HospitalLogin.this, "The current user belong to Patient end", Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
                             user.sendEmailVerification();
-                            Toast.makeText(Login.this, "verification link has been sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "verification link has been sent", Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -90,7 +93,7 @@ public class Login extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -100,7 +103,7 @@ public class Login extends AppCompatActivity {
         resetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               resetpassword();
+                resetpassword();
             }
         });
 
@@ -123,7 +126,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(Login.this, "Password Reset Mail sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Password Reset Mail sent", Toast.LENGTH_SHORT).show();
                 }
 
             }

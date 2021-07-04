@@ -14,9 +14,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.covidcare.R;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.DoubleBounce;
+import com.github.ybq.android.spinkit.style.Wave;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,6 +32,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,6 +46,7 @@ public class Profile extends AppCompatActivity {
     Button save;
     String gmail;
     ImageView profilephoto;
+    ProgressBar progressBar;
     DocumentReference documentReference;
     StorageReference storageReference;
     FirebaseAuth firebaseAuth;
@@ -55,11 +61,15 @@ public class Profile extends AppCompatActivity {
         useraddress=findViewById(R.id.useraddress);
         usermail=findViewById(R.id.usermail);
         save=findViewById(R.id.profile);
+        progressBar = (ProgressBar)findViewById(R.id.progressbar1);
+        Sprite doubleBounce = new Wave();
+        progressBar.setIndeterminateDrawable(doubleBounce);
         profilephoto=findViewById(R.id.profilephoto);
         storageReference=FirebaseStorage.getInstance().getReference();
 
 
         gmail=getIntent().getStringExtra("gmail");
+        usermail.setText(gmail);
         StorageReference profile=storageReference.child(gmail+"/profile.jpg");
 
 
@@ -141,6 +151,8 @@ public class Profile extends AppCompatActivity {
                 Uri imageuri=data.getData();
                 //profilephoto.setImageURI(imageuri);
                 uploaddatatofirebase(imageuri);
+                progressBar.setVisibility(View.VISIBLE);
+
             }
         }
     }
@@ -153,7 +165,18 @@ public class Profile extends AppCompatActivity {
               file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                   @Override
                   public void onSuccess(Uri uri) {
-                      Picasso.get().load(uri).into(profilephoto);
+                      Picasso.get().load(uri).into(profilephoto, new Callback() {
+                          @Override
+                          public void onSuccess() {
+                              progressBar.setVisibility(View.INVISIBLE);
+                          }
+
+                          @Override
+                          public void onError(Exception e) {
+
+                          }
+                      });
+
 
                   }
               });

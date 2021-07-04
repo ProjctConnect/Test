@@ -16,7 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
+import HOSPITAL.HospitalNavigationActivity;
 import HOSPITAL.REGandLOG;
+import HOSPITAL.Showdet;
 import USER.Login;
 import USER.NavigationActivity;
 import USER.R_AND_L;
@@ -63,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         String patient="patient";
+        String hospital="Hospital";
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null){
             if (user.isEmailVerified()){
@@ -71,12 +74,22 @@ public class HomeActivity extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), NavigationActivity.class);
                     i.putExtra("gmailid", gmail);
                     startActivity(i);
+
                 }
+                if (user.getDisplayName().equals(hospital)){
+                    String gmail= user.getEmail();
+                    Intent i = new Intent(getApplicationContext(), HospitalNavigationActivity.class);
+                    i.putExtra("mailid", gmail);
+                    startActivity(i);
+
+                }
+
 
             }
 
 
         }
+
 
     }
 

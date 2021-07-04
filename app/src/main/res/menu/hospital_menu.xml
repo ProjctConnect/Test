@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+        <item android:id="@+id/hospitalshowprofile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Profile">
+        </item>
+        <item android:id="@+id/hospitalupdate"
+            android:icon="@drawable/ic_baseline_person_add_24"
+            android:title="Update Profile">
+        </item>
+        <item android:id="@+id/modifydata"
+            android:icon="@drawable/ic_baseline_local_hospital_24"
+            android:title="Modify Bed Data">
+        </item>
+        <item android:id="@+id/hospitalcovidguideline"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:title="Covid Guidelines">
+        </item>
+
+        <item android:id="@+id/hospitallogout"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:title="Log Out">
+        </item>
+    </group>
+
+
+
+</menu>

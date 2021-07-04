@@ -33,7 +33,7 @@
         android:layout_height="257dp"
         android:layout_gravity="center"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="updateprofile.json"
+        app:lottie_fileName="doct.json"
         app:lottie_loop="true" />
 
     <TextView

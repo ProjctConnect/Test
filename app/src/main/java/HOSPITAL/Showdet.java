@@ -16,8 +16,14 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +34,10 @@ public class Showdet extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private String gmail;
     public String parts1;
-    TextView noofN,noofO;
+    String address,name,city,mail,oxygen,normal,splittedmail,google;
+    TextView normalbed,oxygenbed;
     Button mod,lout;
-    GoogleApiClient gac;
+    FirebaseAuth fire;
 
 
     @Override
@@ -38,39 +45,52 @@ public class Showdet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_showbeds);
 
-        noofN = findViewById(R.id.noofnorbeds14);
-        noofO = findViewById(R.id.noofoxybeds26);
+        normalbed = findViewById(R.id.normalbed);
+        oxygenbed = findViewById(R.id.oxygenbed);
         mod = findViewById(R.id.mod10);
         lout = findViewById(R.id.Logout19);
-        String dress = getIntent().getStringExtra("add");
-        String mal = getIntent().getStringExtra("norm");
-        String gen = getIntent().getStringExtra("oxyg");
-        String hospital = getIntent().getStringExtra("losp");
-        String citt = getIntent().getStringExtra("cityy");
-        gmail = getIntent().getStringExtra("Email");
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("City of MY Hospital",citt);
-        data.put("My Hospital Name",hospital);
-        data.put("Address of My Hospital",dress);
-        data.put("Total no of Normal Beds",mal);
-        data.put("Total no of Oxygen Beds",gen);
-        data.put("Gmail of Hospital",gmail);
+        fire=FirebaseAuth.getInstance();
 
 
+        google=getIntent().getStringExtra("mailid");
+        String[] parts = google.split("(?=@)");
+        splittedmail = parts[0];
 
-        String[] parts = gmail.split("(?=@)");
-        parts1 = parts[0];
-        ref1 = database.getReference("GMAIL OF HOSPITALS");
-        ref1.child(parts1).setValue(data);
+        ref1=database.getReference("GMAIL OF HOSPITALS");
+        ref1.child(splittedmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                address=snapshot.child("Address of My Hospital").getValue(String.class);
+                mail = snapshot.child("Gmail of Hospital").getValue(String.class);
+                normal = snapshot.child("Total no of Normal Beds").getValue(String.class);
+                oxygen = snapshot.child("Total no of Oxygen Beds").getValue(String.class);
+                name = snapshot.child("My Hospital Name").getValue(String.class);
+                city = snapshot.child("City of MY Hospital").getValue(String.class);
+                setdats();
 
-        noofN.setText(mal);
-        noofO.setText(gen);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
 
         mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getApplicationContext(),DATABEDS.class);
+                intent1.putExtra("address",address);
+                intent1.putExtra("keyname",city);
+                intent1.putExtra("keyname2",name);
+                intent1.putExtra("Email",mail);
                 startActivity(intent1);
                 finish();
             }
@@ -78,22 +98,22 @@ public class Showdet extends AppCompatActivity {
         lout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Auth.GoogleSignInApi.signOut(gac).setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        if(status.isSuccess()){
-                            Intent intent2 =new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intent2);
-                            finish();
-                        }else {
-                            Toast.makeText(Showdet.this, "LogOut Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                fire.signOut();
+                Intent logout=new Intent(getApplicationContext(),REGandLOG.class);
+                startActivity(logout);
+                finish();
+
 
             }
         });
 
+
+    }
+
+    private void setdats() {
+        normalbed.setText(normal);
+        oxygenbed.setText(oxygen);
+        Toast.makeText(this, normal, Toast.LENGTH_LONG).show();
 
     }
 }
