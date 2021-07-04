@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -27,8 +26,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,53 +35,85 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import USER.NavigationActivity;
 
-public class HospitalProfile extends AppCompatActivity {
-    EditText usernumber,useraddress;
-    TextView username,usermail;
-    String name,number,age,address,mail,password;
-    Button save;
-    String city;
-    ProgressBar progressBar;
+public class Hospitalupdateprofile extends AppCompatActivity {
+    EditText username,usernumber,useraddress,usermail;
+    String name,number,address,mail;
     ImageView profilephoto;
-    DocumentReference documentReference;
-    StorageReference storageReference;
-    FirebaseAuth firebaseAuth;
+    Button update;
+    StorageReference storage;
+    DocumentReference document;
+    ProgressBar progressBar;
+    String gmailid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital_profile);
-        username=findViewById(R.id.username1);
-        usernumber=findViewById(R.id.usernumber1);
-        useraddress=findViewById(R.id.useraddress1);
-        usermail=findViewById(R.id.usermail1);
-        save=findViewById(R.id.profile1);
-        profilephoto=findViewById(R.id.profilephoto1);
-        storageReference=FirebaseStorage.getInstance().getReference();
-        progressBar = (ProgressBar)findViewById(R.id.progressbar11);
+        setContentView(R.layout.activity_hospitalupdateprofile);
+        username=findViewById(R.id.upname);
+        usernumber=findViewById(R.id.upnumber);
+        useraddress=findViewById(R.id.upaddress);
+        usermail=findViewById(R.id.upmail);
+        profilephoto=findViewById(R.id.upprofile);
+        progressBar = (ProgressBar)findViewById(R.id.upprogressbar2);
         Sprite doubleBounce = new Wave();
         progressBar.setIndeterminateDrawable(doubleBounce);
+        update=findViewById(R.id.upupdateprofile);
 
-        name=getIntent().getStringExtra("keyname2");
-        mail=getIntent().getStringExtra("Email");
-        city=getIntent().getStringExtra("keyname");
-        password=getIntent().getStringExtra("password");
-        username.setText(name);
-        usermail.setText(mail);
-        StorageReference profile=storageReference.child(mail+"/hospitalprofile.jpg");
+        gmailid=getIntent().getStringExtra("update");
+        document= FirebaseFirestore.getInstance().collection("hospital").document(gmailid);
+        usermail.setText(gmailid);
+        progressBar.setVisibility(View.VISIBLE);
+
+        storage=FirebaseStorage.getInstance().getReference().child(gmailid+"/hospitalprofile.jpg");
+        storage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profilephoto, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
+            }
+        });
+
+        document=FirebaseFirestore.getInstance().collection("hospital").document(gmailid);
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String name=documentSnapshot.getString("name");
+                String number=documentSnapshot.getString("phone");
+                String address=documentSnapshot.getString("address");
+                String mail=documentSnapshot.getString("email");
+                username.setText(name);
+                usernumber.setText(number);
+                useraddress.setText(address);
+                usermail.setText(mail);
+
+            }
+        });
 
 
 
 
 
 
-        save.setOnClickListener(new View.OnClickListener() {
+
+
+
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -107,23 +138,20 @@ public class HospitalProfile extends AppCompatActivity {
                     usermail.setError("Enter your E-Mail ID");
                     return;
                 }
-                Map<String, Object> userprofile = new HashMap<>();
-                userprofile.put("name",name);
-                userprofile.put("email",mail);
-                userprofile.put("phone",number);
-                userprofile.put("address",address);
-                documentReference= FirebaseFirestore.getInstance().collection("hospital").document(mail);
-                documentReference.set(userprofile).addOnCompleteListener(new OnCompleteListener<Void>() {
+                Map<String, Object> hospitalprofile = new HashMap<>();
+                hospitalprofile.put("name",name);
+                hospitalprofile.put("phone",number);
+                hospitalprofile.put("address",address);
+                hospitalprofile.put("email",mail);
+                document= FirebaseFirestore.getInstance().collection("hospital").document(gmailid);
+                document.set(hospitalprofile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(), HospitalVerification.class);
-                        intent.putExtra("Email",mail);
-                        intent.putExtra("keyname2",name);
-                        intent.putExtra("keyname",city);
-                        intent.putExtra("address",address);
-                        intent.putExtra("password",password);
+                        Intent intent=new Intent(getApplicationContext(), NavigationActivity.class);
+                        intent.putExtra("gmailid",gmailid);
                         startActivity(intent);
+                        finish();
 
 
                     }
@@ -144,7 +172,6 @@ public class HospitalProfile extends AppCompatActivity {
 
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,7 +186,7 @@ public class HospitalProfile extends AppCompatActivity {
     }
 
     private void uploaddatatofirebase(Uri imageuri) {
-        final  StorageReference file=storageReference.child(mail+"/hospitalprofile.jpg");
+        final  StorageReference file=storage;
         file.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -170,7 +197,6 @@ public class HospitalProfile extends AppCompatActivity {
                             @Override
                             public void onSuccess() {
                                 progressBar.setVisibility(View.INVISIBLE);
-
                             }
 
                             @Override
@@ -185,8 +211,9 @@ public class HospitalProfile extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Hospitalupdateprofile.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
+

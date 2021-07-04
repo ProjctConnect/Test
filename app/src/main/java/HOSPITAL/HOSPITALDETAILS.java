@@ -57,7 +57,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     DatabaseReference ref;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     public String citynamenext;
-    private String gmail;
+    public String gmail,password;
     public String parts1;
 
 
@@ -77,6 +77,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         cityName = (TextView) findViewById(R.id.city_name);
         ref=database.getReference("HOSPITAL DETAILS");
         gmail=getIntent().getStringExtra("gmail");
+        password=getIntent().getStringExtra("password");
 
         // initialize view
         initView();
@@ -111,17 +112,37 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     }
 
     private void savevalue(String toString, String toString1, String toString2) {
+        String hop = hospname.getText().toString();
+        if (toString.isEmpty()){
+            countryName.setError("Please Select Country");
+            return;
+        }
+        if (toString1.isEmpty()){
+            stateNameTextView.setError("Please Select State");
+            return;
+        }
+        if (toString2.isEmpty()){
+            cityName.setError("Please Select City");
+            return;
+        }
+        if (hop.isEmpty()){
+            hospname.setError("Please Enter Hospital Name");
+            return;
+        }
 
-            String hop = hospname.getText().toString();
-            String id = ref.push().getKey();
-            ref.child(toString).child(toString1).child(toString2).child(id).setValue(hop);
-            Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
 
-             Intent intent = new Intent(getApplicationContext(),HospitalProfile.class);
-             intent.putExtra("keyname",toString2);
-             intent.putExtra("keyname2",hop);
-             intent.putExtra("Email",gmail);
-             startActivity(intent);
+
+
+        String id = ref.push().getKey();
+        ref.child(toString).child(toString1).child(toString2).child(id).setValue(hop);
+        Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getApplicationContext(),HospitalProfile.class);
+        intent.putExtra("keyname",toString2);
+        intent.putExtra("keyname2",hop);
+        intent.putExtra("Email",gmail);
+        intent.putExtra("password",password);
+        startActivity(intent);
 
     }
 
@@ -194,8 +215,6 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         //set state name text view and state pick button invisible
         pickStateButton.setVisibility(View.VISIBLE);
         stateNameTextView.setVisibility(View.VISIBLE);
-        stateNameTextView.setText("Region");
-        cityName.setText("City");
         // set text on main view
 
         flagImage.setBackgroundResource(country.getFlag());
@@ -221,7 +240,6 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     public void onSelectState(State state) {
         pickCity.setVisibility(View.VISIBLE);
         cityName.setVisibility(View.VISIBLE);
-        cityName.setText("City");
         cityPicker.equalCityObject.clear();
 
         stateNameTextView.setText(state.getStateName());

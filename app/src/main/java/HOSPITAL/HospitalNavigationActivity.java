@@ -60,8 +60,8 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UpdateProfile.class);
-                intent.putExtra("gmail",gmail);
+                Intent intent = new Intent(getApplicationContext(), HospitalShowProfile.class);
+                intent.putExtra("update",gmail);
                 startActivity(intent);
 
             }
@@ -97,8 +97,8 @@ public class HospitalNavigationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.hospitalupdate:
-                        Intent intent1=new Intent(getApplicationContext(),HospitalShowProfile.class);
-                        intent1.putExtra("gmail",gmail);
+                        Intent intent1=new Intent(getApplicationContext(),Hospitalupdateprofile.class);
+                        intent1.putExtra("update",gmail);
                         startActivity(intent1);
                         break;
 

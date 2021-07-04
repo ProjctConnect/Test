@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import USER.NavigationActivity;
 import USER.Registration;
@@ -30,6 +33,8 @@ public class HospitalLogin extends AppCompatActivity {
     String user,email;
     TextView resetpassword;
     FirebaseAuth firebaseAuth;
+    String address;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class HospitalLogin extends AppCompatActivity {
         password=findViewById(R.id.password1);
         user=mail.getText().toString().trim();
         firebaseAuth=FirebaseAuth.getInstance();
+
         createacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +87,10 @@ public class HospitalLogin extends AppCompatActivity {
                             }
 
                         }else{
-                            user.sendEmailVerification();
+                            Intent intent=new Intent(getApplicationContext(),HOSPITALDETAILS.class);
+                            intent.putExtra("gmail",gmail);
+                            intent.putExtra("password",password1);
+                            startActivity(intent);
                             Toast.makeText(getApplicationContext(), "verification link has been sent", Toast.LENGTH_SHORT).show();
                         }
 

@@ -25,7 +25,7 @@ import USER.Profile;
 public class HospitalVerification extends AppCompatActivity {
     TextView verify,confirmation,sent;
     Button vbtn;
-    String mailgid,pass;
+    String mailgid,pass,hospitalname,city,address;
     RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,13 @@ public class HospitalVerification extends AppCompatActivity {
         sent=findViewById(R.id.sent1);
         vbtn = findViewById(R.id.verifybtn1);
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        mailgid =getIntent().getStringExtra("gmail");
+        mailgid =getIntent().getStringExtra("Email");
         pass  = getIntent().getStringExtra("password");
+        hospitalname=getIntent().getStringExtra("keyname2");
+        city=getIntent().getStringExtra("keyname");
+        address=getIntent().getStringExtra("address");
+
+
         relativeLayout.setVisibility(View.INVISIBLE);
         sent.setVisibility(View.INVISIBLE);
         verify.setText(mailgid);
@@ -54,8 +59,11 @@ public class HospitalVerification extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 if(user.isEmailVerified()){
-                                    Intent intent1 = new Intent(getApplicationContext(), HOSPITALDETAILS.class);
-                                    intent1.putExtra("gmail",mailgid);
+                                    Intent intent1 = new Intent(getApplicationContext(), DATABEDS.class);
+                                    intent1.putExtra("Email",mailgid);
+                                    intent1.putExtra("keyname2",hospitalname);
+                                    intent1.putExtra("keyname",city);
+                                    intent1.putExtra("address",address);
                                     startActivity(intent1);
                                 }else{
                                     user.sendEmailVerification();

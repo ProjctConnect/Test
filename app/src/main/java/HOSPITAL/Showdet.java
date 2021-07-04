@@ -56,6 +56,7 @@ public class Showdet extends AppCompatActivity {
         String[] parts = google.split("(?=@)");
         splittedmail = parts[0];
 
+
         ref1=database.getReference("GMAIL OF HOSPITALS");
         ref1.child(splittedmail).addValueEventListener(new ValueEventListener() {
             @Override

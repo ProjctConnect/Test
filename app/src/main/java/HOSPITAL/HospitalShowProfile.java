@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 public class HospitalShowProfile extends AppCompatActivity {
-    TextView username,userage,usernumber,useraddress,usermail;
+    TextView username,usernumber,useraddress,usermail;
     ImageView profile;
     StorageReference storageReference;
     DocumentReference documentReference;
@@ -30,17 +30,16 @@ public class HospitalShowProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_showuser);
-        username=findViewById(R.id.tvname);
-        userage=findViewById(R.id.tvage);
-        usernumber=findViewById(R.id.tvnumber);
-        useraddress=findViewById(R.id.tvaddress);
-        usermail=findViewById(R.id.tvmail);
-        profile=findViewById(R.id.tvprofile);
-        documentReference= FirebaseFirestore.getInstance().collection("user").document();
+        setContentView(R.layout.activity_hospital_show_profile);
+        username=findViewById(R.id.hname);
+        usernumber=findViewById(R.id.hnumber);
+        useraddress=findViewById(R.id.haddress);
+        usermail=findViewById(R.id.hmail);
+        profile=findViewById(R.id.hprofile);
         gmailid=getIntent().getStringExtra("gmail");
+        documentReference= FirebaseFirestore.getInstance().collection("hospital").document(gmailid);
 
-        storageReference =FirebaseStorage.getInstance().getReference().child(gmailid+"/profile.jpg");
+        storageReference =FirebaseStorage.getInstance().getReference().child(gmailid+"/hospitalprofile.jpg");
         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -48,17 +47,15 @@ public class HospitalShowProfile extends AppCompatActivity {
             }
         });
 
-        documentReference=FirebaseFirestore.getInstance().collection("user").document(gmailid);
+        documentReference=FirebaseFirestore.getInstance().collection("hospital").document(gmailid);
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String name=documentSnapshot.getString("name");
-                String age=documentSnapshot.getString("age");
                 String number=documentSnapshot.getString("phone");
                 String address=documentSnapshot.getString("address");
                 String mail=documentSnapshot.getString("email");
                 username.setText(name);
-                userage.setText(age);
                 usernumber.setText(number);
                 useraddress.setText(address);
                 usermail.setText(mail);

@@ -44,6 +44,7 @@ public class DATABEDS extends AppCompatActivity {
         String city = getIntent().getStringExtra("keyname");
         String hosp = getIntent().getStringExtra("keyname2");
         Map<String, Object> data = new HashMap<>();
+
         mailid=getIntent().getStringExtra("Email");
         save.setOnClickListener(new View.OnClickListener() {
             @Override
