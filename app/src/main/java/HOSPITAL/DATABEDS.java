@@ -19,6 +19,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,12 @@ public class DATABEDS extends AppCompatActivity {
         address=getIntent().getStringExtra("address");
         String city = getIntent().getStringExtra("keyname");
         String hosp = getIntent().getStringExtra("keyname2");
+        Date currentTime = Calendar.getInstance().getTime();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh.mm.ss aa");
+        String time = dateFormat.format(currentTime);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String date = df.format(c.getTime());
         Map<String, Object> data = new HashMap<>();
 
         mailid=getIntent().getStringExtra("Email");
@@ -57,6 +66,8 @@ public class DATABEDS extends AppCompatActivity {
                 data.put("Total no of Normal Beds",nor);
                 data.put("Total no of Oxygen Beds",oxy);
                 data.put("Gmail of Hospital",mailid);
+                data.put("time",time);
+                data.put("date",date);
 
                 String[] parts = mailid.split("(?=@)");
                 parts1 = parts[0];

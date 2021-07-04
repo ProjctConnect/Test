@@ -51,7 +51,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         hospitals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), details.class);
+                Intent intent = new Intent(getApplicationContext(), HospitalShowProfile.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -60,7 +60,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HospitalShowProfile.class);
+                Intent intent = new Intent(getApplicationContext(), Hospitalupdateprofile.class);
                 intent.putExtra("update",gmail);
                 startActivity(intent);
 
@@ -69,7 +69,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BookingHistory.class);
+                Intent intent = new Intent(getApplicationContext(), Showdet.class);
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
 
@@ -109,7 +109,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.hospitalcovidguideline:
-                        Intent intent3=new Intent(getApplicationContext(),HospitalShowProfile.class);
+                        Intent intent3=new Intent(getApplicationContext(),Guidelines.class);
                         intent3.putExtra("gmail",gmail);
                         startActivity(intent3);
                         break;

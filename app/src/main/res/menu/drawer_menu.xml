@@ -22,7 +22,7 @@
         </item>
 
         <item android:id="@+id/logout"
-            android:icon="@drawable/ic_baseline_access_time_24"
+            android:icon="@drawable/ic_baseline_close_24"
             android:title="Log Out">
         </item>
         </group>

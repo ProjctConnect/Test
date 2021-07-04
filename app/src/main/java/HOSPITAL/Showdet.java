@@ -34,8 +34,8 @@ public class Showdet extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private String gmail;
     public String parts1;
-    String address,name,city,mail,oxygen,normal,splittedmail,google;
-    TextView normalbed,oxygenbed;
+    String address,name,city,mail,oxygen,normal,splittedmail,google,date,time;
+    TextView normalbed,oxygenbed,updatetime,updatedate;
     Button mod,lout;
     FirebaseAuth fire;
 
@@ -47,6 +47,8 @@ public class Showdet extends AppCompatActivity {
 
         normalbed = findViewById(R.id.normalbed);
         oxygenbed = findViewById(R.id.oxygenbed);
+        updatedate=findViewById(R.id.updatedate);
+        updatetime=findViewById(R.id.updatetime);
         mod = findViewById(R.id.mod10);
         lout = findViewById(R.id.Logout19);
         fire=FirebaseAuth.getInstance();
@@ -67,6 +69,9 @@ public class Showdet extends AppCompatActivity {
                 oxygen = snapshot.child("Total no of Oxygen Beds").getValue(String.class);
                 name = snapshot.child("My Hospital Name").getValue(String.class);
                 city = snapshot.child("City of MY Hospital").getValue(String.class);
+                time=snapshot.child("time").getValue(String.class);
+                date=snapshot.child("date").getValue(String.class);
+
                 setdats();
 
 
@@ -114,7 +119,8 @@ public class Showdet extends AppCompatActivity {
     private void setdats() {
         normalbed.setText(normal);
         oxygenbed.setText(oxygen);
-        Toast.makeText(this, normal, Toast.LENGTH_LONG).show();
+        updatetime.setText(time);
+        updatedate.setText(date);
 
     }
 }

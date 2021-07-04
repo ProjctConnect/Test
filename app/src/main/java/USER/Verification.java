@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class Verification extends AppCompatActivity {
       TextView verify,confirmation,sent;
       Button vbtn;
-      String mailgid,pass;
+      String mailgid,pass,name;
       RelativeLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class Verification extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         mailgid =getIntent().getStringExtra("gmail");
         pass  = getIntent().getStringExtra("password");
+        name=getIntent().getStringExtra("name");
         relativeLayout.setVisibility(View.INVISIBLE);
         sent.setVisibility(View.INVISIBLE);
         verify.setText(mailgid);
@@ -52,8 +53,9 @@ public class Verification extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 if(user.isEmailVerified()){
-                                    Intent intent1 = new Intent(getApplicationContext(),Profile.class);
-                                    intent1.putExtra("gmail",mailgid);
+                                    Intent intent1 = new Intent(getApplicationContext(),NavigationActivity.class);
+                                    intent1.putExtra("gmailid",mailgid);
+                                    intent1.putExtra("name",name);
                                     startActivity(intent1);
                                 }else{
                                     user.sendEmailVerification();

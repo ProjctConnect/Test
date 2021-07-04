@@ -186,14 +186,14 @@
                 android:layout_height="62dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="35dp"
-                app:lottie_fileName="search.json"
+                app:lottie_fileName="mbbs.json"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hospitals"
+                android:text="Hospital Profile"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#d703082b"
@@ -203,7 +203,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search and Book nearby hospitals"
+                android:text="View Hospital Details"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#6003082b"
@@ -246,7 +246,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update User information"
+                android:text="Update Hospital information"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#6003082b"
@@ -255,6 +255,50 @@
 
         </RelativeLayout>
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/im41"
+                android:layout_width="380dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/cv4" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="67dp"
+                android:layout_height="62dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="35dp"
+                app:lottie_fileName="hospitalbed.json"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modify Bed Information"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#d703082b"
+                android:layout_marginLeft="105dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update Bed Info"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="#6003082b"
+                android:layout_marginLeft="105dp"
+                android:layout_marginTop="50dp"/>
+
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -291,49 +335,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Measures to be taken to protect from covid"
-                android:textSize="14dp"
-                android:textStyle="bold"
-                android:textColor="#6003082b"
-                android:layout_marginLeft="105dp"
-                android:layout_marginTop="50dp"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/im41"
-                android:layout_width="380dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/cv4" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="67dp"
-                android:layout_height="62dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="35dp"
-                app:lottie_fileName="his.json"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hospital Booking History"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#d703082b"
-                android:layout_marginLeft="105dp"
-                android:layout_marginTop="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hospital beds Booked so far"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 android:textColor="#6003082b"

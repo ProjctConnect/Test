@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class Profile extends AppCompatActivity {
     EditText username,userage,usernumber,useraddress,usermail;
-    String name,number,age,address,mail;
+    String name,number,age,address,mail,password;
     Button save;
     String gmail;
     ImageView profilephoto;
@@ -69,6 +69,7 @@ public class Profile extends AppCompatActivity {
 
 
         gmail=getIntent().getStringExtra("gmail");
+        password=getIntent().getStringExtra("password");
         usermail.setText(gmail);
         StorageReference profile=storageReference.child(gmail+"/profile.jpg");
 
@@ -118,8 +119,9 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                         Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(),NavigationActivity.class);
-                        intent.putExtra("gmailid",gmail);
+                        Intent intent=new Intent(getApplicationContext(),Verification.class);
+                        intent.putExtra("gmail",gmail);
+                        intent.putExtra("password",password);
                         intent.putExtra("name",name);
                         startActivity(intent);
 

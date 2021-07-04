@@ -78,7 +78,10 @@ public class Login extends AppCompatActivity {
                             }
 
                         }else{
-                            user.sendEmailVerification();
+                            Intent intent=new Intent(getApplicationContext(),Profile.class);
+                            intent.putExtra("gmail",gmail);
+                            intent.putExtra("password",password1);
+                            startActivity(intent);
                             Toast.makeText(Login.this, "verification link has been sent", Toast.LENGTH_SHORT).show();
                         }
 

@@ -17,12 +17,12 @@
             android:title="Modify Bed Data">
         </item>
         <item android:id="@+id/hospitalcovidguideline"
-            android:icon="@drawable/ic_baseline_access_time_24"
+            android:icon="@drawable/ic_baseline_info_24"
             android:title="Covid Guidelines">
         </item>
 
         <item android:id="@+id/hospitallogout"
-            android:icon="@drawable/ic_baseline_access_time_24"
+            android:icon="@drawable/ic_baseline_close_24"
             android:title="Log Out">
         </item>
     </group>

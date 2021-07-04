@@ -38,7 +38,7 @@ public class content extends AppCompatActivity {
     DocumentReference ref;
     CardView map;
 
-    String names,age,phone,address,email;
+    String names,age,phone,address,email,hosptime,hospdate;
     String hospita;
     String hospaddress;
     DatabaseReference harsh;
@@ -65,8 +65,7 @@ public class content extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());
         success.setText(hospita);
-        time.setText(output);
-        date.setText(formattedDate);
+
         map=findViewById(R.id.roll);
         ref= FirebaseFirestore.getInstance().collection(city).document(hospita);
         ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -75,6 +74,10 @@ public class content extends AppCompatActivity {
                 if(documentSnapshot.exists()){
                     name.setText(documentSnapshot.getString("Address of My Hospital") );
                     hospaddress=documentSnapshot.getString("Address of My Hospital");
+                    hospdate=documentSnapshot.getString("date");
+                    hosptime=documentSnapshot.getString("time");
+                    time.setText(hosptime);
+                    date.setText(hospdate);
                     //+" NORMAL BEDS/n "+documentSnapshot.getString("Total no of Normal Beds")+"OXYGEN CYLINDER \n   "+documentSnapshot.getString("Total no of Oxygen Beds")
                     String normalbed=documentSnapshot.getString("Total no of Normal Beds");
                     int score=Integer.parseInt(normalbed);
