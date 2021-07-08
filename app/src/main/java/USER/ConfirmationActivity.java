@@ -78,7 +78,6 @@ public class ConfirmationActivity extends AppCompatActivity {
 
         String[] parts = gmail.split("(?=@)");
         date = findViewById(R.id.nowdate);
-        name1=findViewById(R.id.name1);
         time = findViewById(R.id.nowtime);
         name = findViewById(R.id.nowname);
         address = findViewById(R.id.nowaddress);
@@ -87,7 +86,6 @@ public class ConfirmationActivity extends AppCompatActivity {
         time.setText(tdaytime);
         name.setText(hospital);
         address.setText(tdayname);
-        name1.setText(username);
         parts11 = parts[0];
         databaseReference= FirebaseDatabase.getInstance().getReference("GMAIL OF HOSPITALS").child(parts11);
 

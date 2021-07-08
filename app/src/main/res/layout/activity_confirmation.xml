@@ -264,21 +264,16 @@
         android:background="@drawable/buttonbackground"
         android:text="GO to Dashboard"
         android:textColor="#fff" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/name1"
-        android:textColor="@color/black"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/age1"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/mail1"/>
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="hospitalbed.json"
+        app:lottie_loop="false" />
 
 
 
