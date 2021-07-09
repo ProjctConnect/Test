@@ -261,7 +261,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/im41"
+                android:id="@+id/information"
                 android:layout_width="380dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="18dp"

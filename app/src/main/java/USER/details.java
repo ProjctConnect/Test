@@ -94,6 +94,7 @@ public class details extends AppCompatActivity implements OnStatePickerListener,
                 intent.putExtra("city",cityName.getText().toString());
                 intent.putExtra("gmail",gmail);
                 startActivity(intent);
+                finish();
             }
         });
 

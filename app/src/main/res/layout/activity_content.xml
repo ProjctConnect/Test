@@ -190,6 +190,7 @@
             app:lottie_fileName="hospitalbed.json"
             app:lottie_loop="true" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

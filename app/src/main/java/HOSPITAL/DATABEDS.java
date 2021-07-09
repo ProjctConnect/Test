@@ -60,6 +60,14 @@ public class DATABEDS extends AppCompatActivity {
             public void onClick(View v) {
                 String nor = norbed.getText().toString();
                 String oxy = oxybed.getText().toString();
+                if (nor.isEmpty()){
+                    norbed.setError("Enter The Normal Bed");
+                    return;
+                }
+                if (oxy.isEmpty()){
+                    oxybed.setError("Enter The Oxygen Bed");
+                    return;
+                }
                 data.put("City of MY Hospital",city);
                 data.put("My Hospital Name",hosp);
                 data.put("Address of My Hospital",address);
@@ -85,6 +93,7 @@ public class DATABEDS extends AppCompatActivity {
 
                         intent.putExtra("mailid",mailid);
                         startActivity(intent);
+                        finish();
                     }
                 });
 

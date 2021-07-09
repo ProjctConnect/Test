@@ -143,6 +143,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         intent.putExtra("Email",gmail);
         intent.putExtra("password",password);
         startActivity(intent);
+        finish();
 
     }
 

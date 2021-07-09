@@ -49,16 +49,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConfirmationActivity extends AppCompatActivity {
-    String hospital, city, bed, newbed, gmail, parts11,tdaydate,tdaytime,tdayname;
+    String hospital, city, bed, newbed, gmail, parts11,tdaydate,tdaytime,tdayname,google;
     String oxygenbed, newoxybed, newoxygen, newnormal,username,userage;
     int i, a, oxy, norm;
     TextView oxygen, normal,date,time,name,address;
     TextView name1,age1,mail1;
     DatabaseReference databaseReference;
+    DatabaseReference profile;
     DocumentReference reference;
     Button dashboard,pdf;
 
@@ -75,8 +77,17 @@ public class ConfirmationActivity extends AppCompatActivity {
         tdayname = getIntent().getStringExtra("address");
         userage=getIntent().getStringExtra("userage");
         username=getIntent().getStringExtra("username");
+        google=getIntent().getStringExtra("usermail");
+
+
 
         String[] parts = gmail.split("(?=@)");
+        parts11 = parts[0];
+        profile=FirebaseDatabase.getInstance().getReference().child("Update").child(google).child("Date");
+        LocalDate localDate=LocalDate.now();
+        LocalDate Threeday=localDate.plusDays(3);
+        String threeday=Threeday.toString();
+        profile.setValue(threeday);
         date = findViewById(R.id.nowdate);
         time = findViewById(R.id.nowtime);
         name = findViewById(R.id.nowname);
@@ -86,7 +97,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         time.setText(tdaytime);
         name.setText(hospital);
         address.setText(tdayname);
-        parts11 = parts[0];
+
         databaseReference= FirebaseDatabase.getInstance().getReference("GMAIL OF HOSPITALS").child(parts11);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -1,5 +1,6 @@
 package USER;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -16,13 +17,20 @@ import android.widget.Toast;
 
 import com.example.covidcare.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,8 +44,12 @@ public class content extends AppCompatActivity {
     String city;
     String patient;
     DocumentReference ref;
+    int number=0;
     CardView map;
-
+    String a;
+    TextView three;
+    DatabaseReference databaseReference;
+    String afterday;
     String names,age,phone,address,email,hosptime,hospdate;
     String hospita;
     String hospaddress;
@@ -64,7 +76,10 @@ public class content extends AppCompatActivity {
         String output = dateFormat.format(currentTime);
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c.getTime());
+
+
         success.setText(hospita);
+
 
         map=findViewById(R.id.roll);
         ref= FirebaseFirestore.getInstance().collection(city).document(hospita);
@@ -127,6 +142,33 @@ public class content extends AppCompatActivity {
          pa=patient;
         String [] java =patient.split("(?=@)");
         String java1=java[0];
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("Update").child(java1);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+               afterday=snapshot.child("Date").getValue(String.class);
+               LocalDate localDate=LocalDate.now();
+               String current=localDate.toString();
+               LocalDate afterthree=LocalDate.parse(afterday);
+               Period period = Period.between(localDate,afterthree);
+               number=period.getDays();
+               if (number<=0 ){
+                   book.setEnabled(true);
+                   book1.setEnabled(true);
+               }else {
+                   book.setEnabled(false);
+                   book1.setEnabled(false);
+                   Toast.makeText(content.this, "Booking will be enabled after 3days from booking", Toast.LENGTH_LONG).show();
+               }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
         java.util.Map<String, Object> data = new HashMap<>();
 
         book.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +194,7 @@ public class content extends AppCompatActivity {
                 intent.putExtra("username",names);
                 intent.putExtra("userage",age);
                 intent.putExtra("phone",phone);
+                intent.putExtra("usermail",java1);
                 startActivity(intent);
                 finish();
 
@@ -180,6 +223,7 @@ public class content extends AppCompatActivity {
                 intent.putExtra("address",hospaddress);
                 intent.putExtra("age",age);
                 intent.putExtra("name",names);
+                intent.putExtra("oxygen",java1);
 
                 startActivity(intent);
                 finish();

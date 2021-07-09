@@ -124,6 +124,7 @@ public class HospitalProfile extends AppCompatActivity {
                         intent.putExtra("address",address);
                         intent.putExtra("password",password);
                         startActivity(intent);
+                        finish();
 
 
                     }

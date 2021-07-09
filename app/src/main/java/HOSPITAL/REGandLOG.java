@@ -26,6 +26,7 @@ public class REGandLOG extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(getApplicationContext(), HospitalRegister.class);
                 startActivity(intent1);
+                finish();
             }
         });
 
@@ -34,6 +35,7 @@ public class REGandLOG extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(),HospitalLogin.class);
                 startActivity(intent2);
+                finish();
             }
         });
     }

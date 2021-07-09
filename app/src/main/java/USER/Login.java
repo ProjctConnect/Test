@@ -72,6 +72,7 @@ public class Login extends AppCompatActivity {
                                 Intent intent1 = new Intent(getApplicationContext(),NavigationActivity.class);
                                 intent1.putExtra("gmailid",gmail);
                                 startActivity(intent1);
+                                finish();
 
                             }else {
                                 Toast.makeText(Login.this, "You belong to hospital end", Toast.LENGTH_SHORT).show();
@@ -82,6 +83,7 @@ public class Login extends AppCompatActivity {
                             intent.putExtra("gmail",gmail);
                             intent.putExtra("password",password1);
                             startActivity(intent);
+                            finish();
                             Toast.makeText(Login.this, "verification link has been sent", Toast.LENGTH_SHORT).show();
                         }
 

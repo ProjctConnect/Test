@@ -26,6 +26,7 @@ public class R_AND_L extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(getApplicationContext(),Registration.class);
                 startActivity(intent);
+                finish();
 
 
             }
@@ -36,6 +37,7 @@ public class R_AND_L extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1=new Intent(getApplicationContext(),Login.class);
                 startActivity(intent1);
+                finish();
             }
         });
     }

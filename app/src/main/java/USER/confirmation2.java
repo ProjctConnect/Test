@@ -45,17 +45,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class confirmation2 extends AppCompatActivity {
     String hospital, city, bed, newbed, gmail, parts11,tdaydate,tdaytime,tdayname,address,patientname,patientage;
-    String oxygenbed, newoxybed, newoxygen, newnormal;
+    String oxygenbed, newoxybed, newoxygen, newnormal,dell;
     int i, a, oxy, norm;
     Button oxybutton;
     TextView oxygen, normal,oxydate,oxytime,oxyname,oxyaddress;
     DatabaseReference databaseReference;
     DocumentReference reference;
+    DatabaseReference profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,12 @@ public class confirmation2 extends AppCompatActivity {
         address=getIntent().getStringExtra("address");
         patientage=getIntent().getStringExtra("age");
         patientname=getIntent().getStringExtra("name");
+        dell=getIntent().getStringExtra("oxygen");
+        profile=FirebaseDatabase.getInstance().getReference().child("Update").child(dell).child("Date");
+        LocalDate localDate=LocalDate.now();
+        LocalDate Threeday=localDate.plusDays(3);
+        String threeday=Threeday.toString();
+        profile.setValue(threeday);
         String[] parts = gmail.split("(?=@)");
         parts11 = parts[0];
         oxytime = findViewById(R.id.oxytime);

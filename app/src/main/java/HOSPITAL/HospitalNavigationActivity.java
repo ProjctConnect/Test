@@ -45,7 +45,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         hospitals=findViewById(R.id.im11);
         update=findViewById(R.id.im21);
         guidelines=findViewById(R.id.im31);
-        history=findViewById(R.id.im41);
+        history=findViewById(R.id.information);
         navigationView = (NavigationView) findViewById(R.id.navigation_menu1);
         firebaseAuth=FirebaseAuth.getInstance();
         hospitals.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +70,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Showdet.class);
-                intent.putExtra("gmail",gmail);
+                intent.putExtra("mailid",gmail);
                 startActivity(intent);
 
             }

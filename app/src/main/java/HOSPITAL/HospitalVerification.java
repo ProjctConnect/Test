@@ -65,6 +65,7 @@ public class HospitalVerification extends AppCompatActivity {
                                     intent1.putExtra("keyname",city);
                                     intent1.putExtra("address",address);
                                     startActivity(intent1);
+                                    finish();
                                 }else{
                                     user.sendEmailVerification();
                                     vbtn.setText("CONTINUE");

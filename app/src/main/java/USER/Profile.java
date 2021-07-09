@@ -124,6 +124,7 @@ public class Profile extends AppCompatActivity {
                         intent.putExtra("password",password);
                         intent.putExtra("name",name);
                         startActivity(intent);
+                        finish();
 
 
                     }
