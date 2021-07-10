@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
         <activity android:name="USER.Verification"></activity>
+        <activity android:name="USER.NavigationActivity" />
         <activity android:name="HOSPITAL.HOSPITALDETAILS" />
         <activity android:name="HOSPITAL.HospitalNavigationActivity" />
-        <activity android:name="USER.NavigationActivity" />
         <activity android:name="HOSPITAL.HospitalRegister" />
         <activity android:name="HOSPITAL.HospitalLogin" />
         <activity android:name="USER.Profile" />
