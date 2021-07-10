@@ -20,6 +20,8 @@ import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import HOSPITAL.HospitalShowProfile;
+
 public class NavigationActivity extends AppCompatActivity {
 
     String gmail,name;
@@ -51,7 +53,9 @@ public class NavigationActivity extends AppCompatActivity {
                 {
                     case  R.id.showprofile:
 
-                        Toast.makeText(NavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NavigationActivity.this, Showuser.class);
+                        intent.putExtra("gmail",gmail);
+                        startActivity(intent);
                         break;
 
                     case R.id.searchhosp:
