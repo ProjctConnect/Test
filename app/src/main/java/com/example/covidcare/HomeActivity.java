@@ -6,7 +6,6 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
@@ -18,8 +17,6 @@ import java.util.ArrayList;
 
 import HOSPITAL.HospitalNavigationActivity;
 import HOSPITAL.REGandLOG;
-import HOSPITAL.Showdet;
-import USER.Login;
 import USER.NavigationActivity;
 import USER.R_AND_L;
 

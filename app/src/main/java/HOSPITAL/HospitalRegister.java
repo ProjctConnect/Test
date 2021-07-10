@@ -18,9 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import USER.Login;
-import USER.Verification;
-
 public class HospitalRegister extends AppCompatActivity {
 
     EditText email,password,confirmpassword;
