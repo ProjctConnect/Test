@@ -1,5 +1,13 @@
 package HOSPITAL;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -7,22 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-
+import USER.Guidelines;
 
 public class HospitalNavigationActivity extends AppCompatActivity {
 
@@ -55,8 +52,33 @@ public class HospitalNavigationActivity extends AppCompatActivity {
 
             }
         });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Hospitalupdateprofile.class);
+                intent.putExtra("update",gmail);
+                startActivity(intent);
 
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Showdet.class);
+                intent.putExtra("mailid",gmail);
+                startActivity(intent);
 
+            }
+        });
+        guidelines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Guidelines.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -70,16 +92,23 @@ public class HospitalNavigationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.hospitalupdate:
-                        Toast.makeText(HospitalNavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent1=new Intent(getApplicationContext(),Hospitalupdateprofile.class);
+                        intent1.putExtra("update",gmail);
+                        startActivity(intent1);
                         break;
 
                     case R.id.modifydata:
-                        Toast.makeText(HospitalNavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent2=new Intent(getApplicationContext(),Showdet.class);
+                        intent2.putExtra("mailid",gmail);
+                        startActivity(intent2);
                         break;
 
                     case R.id.hospitalcovidguideline:
-                        Toast.makeText(HospitalNavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent3=new Intent(getApplicationContext(),Guidelines.class);
+                        intent3.putExtra("gmail",gmail);
+                        startActivity(intent3);
                         break;
+
                     case R.id.hospitallogout:
                         firebaseAuth.signOut();
                         Intent intent4=new Intent(getApplicationContext(), REGandLOG.class);
@@ -122,7 +151,7 @@ public class HospitalNavigationActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout11);
         Toolbar toolbar = findViewById(R.id.toolbar11);
         setSupportActionBar(toolbar);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.nav_open , R.string.nav_close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open , R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -1,8 +1,5 @@
 package HOSPITAL;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.covidcare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -82,9 +82,9 @@ public class HospitalLogin extends AppCompatActivity {
                             }
 
                         }else{
-                            Intent intent=new Intent(getApplicationContext(),HospitalVerification.class);
+                            Intent intent=new Intent(getApplicationContext(),HOSPITALDETAILS.class);
                             intent.putExtra("gmail",gmail);
-                            intent.putExtra("pass",password1);
+                            intent.putExtra("password",password1);
                             startActivity(intent);
                             finish();
                             Toast.makeText(getApplicationContext(), "verification link has been sent", Toast.LENGTH_SHORT).show();

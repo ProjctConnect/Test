@@ -1,21 +1,26 @@
-package HOSPITAL;
+package USER;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.covidcare.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.vikktorn.picker.City;
 import com.vikktorn.picker.CityPicker;
 import com.vikktorn.picker.Country;
@@ -35,11 +40,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerListener, OnCountryPickerListener, OnCityPickerListener, AdapterView.OnItemSelectedListener {
+public class details extends AppCompatActivity implements OnStatePickerListener, OnCountryPickerListener, OnCityPickerListener, AdapterView.OnItemSelectedListener {
 
     public static int countryID, stateID;
     private Button pickStateButton, pickCountry, pickCity;
-    private TextView stateNameTextView, countryName,countryCode,countryPhoneCode,countryCurrency,cityName;
+    private TextView stateNameTextView, countryName,countryCode, countryPhoneCode, countryCurrency, cityName;
     private ImageView flagImage;
     // Pickers
     private CountryPicker countryPicker;
@@ -49,34 +54,50 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     public static List<State> stateObject;
     // arrays of city object
     public static List<City> cityObject;
-    CardView adddata;
+    Button adddata;
     EditText hospname, address;
     DatabaseReference ref;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public String citynamenext;
-    public String gmail,password;
-    public String parts1;
-
-
-
-
+    String gmail;
+    private ListView listView;
+    CardView check;
+    ArrayList<String> list;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_h_o_s_p_i_t_a_l_d_e_t_a_i_l_s);
+        setContentView(R.layout.activity_details);
+        check=(CardView) findViewById(R.id.check);
 
+         listView=findViewById(R.id.listview);
+       list=new ArrayList<>();
+         adapter=new ArrayAdapter<>(this, R.layout.custom_list, R.id.label,list);
 
-        adddata = findViewById(R.id.addata);
-        hospname = findViewById(R.id.hospname);
-
-        countryName = findViewById(R.id.countryNameTextView);
-        stateNameTextView = findViewById(R.id.state_name);
-        cityName = (TextView) findViewById(R.id.city_name);
-        ref=database.getReference("HOSPITAL DETAILS");
+         listView.setAdapter(adapter);
+        countryName = (TextView)findViewById(R.id.pickCountry);
+        stateNameTextView = (TextView)findViewById(R.id.pickState);
+        cityName = (TextView) findViewById(R.id.pick_city);
+        String country=countryName.getText().toString();
         gmail=getIntent().getStringExtra("gmail");
-        password=getIntent().getStringExtra("password");
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                retrivedata(countryName.getText().toString(),stateNameTextView.getText().toString(),cityName.getText().toString());
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String hosp= listView.getItemAtPosition(position).toString();
+                Intent intent=new Intent(getApplicationContext(),content.class);
+                intent.putExtra("hosp",hosp);
+                intent.putExtra("city",cityName.getText().toString());
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+            }
+        });
 
-        // initialize view
+
         initView();
         // get state from assets JSON
         try {
@@ -99,50 +120,30 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         setCountryListener();
         setCityListener();
 
-        adddata.setOnClickListener(new View.OnClickListener() {
+
+
+    }
+    public void  retrivedata(String toString, String toString1, String toString2){
+        ref=FirebaseDatabase.getInstance().getReference().child("HOSPITAL DETAILS").child(toString).child(toString1).child(toString2);
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                savevalue(countryName.getText().toString(),stateNameTextView.getText().toString(),cityName.getText().toString());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for(DataSnapshot snap:snapshot.getChildren()){
+                    list.add(snap.getValue().toString());
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
     }
 
-    private void savevalue(String toString, String toString1, String toString2) {
-        String hop = hospname.getText().toString();
-        if (toString.isEmpty()){
-            countryName.setError("Please Select Country");
-            return;
-        }
-        if (toString1.isEmpty()){
-            stateNameTextView.setError("Please Select State");
-            return;
-        }
-        if (toString2.isEmpty()){
-            cityName.setError("Please Select City");
-            return;
-        }
-        if (hop.isEmpty()){
-            hospname.setError("Please Enter Hospital Name");
-            return;
-        }
 
 
-
-
-        String id = ref.push().getKey();
-        ref.child(toString).child(toString1).child(toString2).child(id).setValue(hop);
-        Toast.makeText(this, "value saved", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(getApplicationContext(),HospitalProfile.class);
-        intent.putExtra("keyname",toString2);
-        intent.putExtra("keyname2",hop);
-        intent.putExtra("Email",gmail);
-        intent.putExtra("password",password);
-        startActivity(intent);
-        finish();
-
-    }
 
 
 // INIT VIEWS
@@ -213,6 +214,8 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         //set state name text view and state pick button invisible
         pickStateButton.setVisibility(View.VISIBLE);
         stateNameTextView.setVisibility(View.VISIBLE);
+        stateNameTextView.setText("Region");
+        cityName.setText("City");
         // set text on main view
 
         flagImage.setBackgroundResource(country.getFlag());
@@ -238,6 +241,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
     public void onSelectState(State state) {
         pickCity.setVisibility(View.VISIBLE);
         cityName.setVisibility(View.VISIBLE);
+        cityName.setText("City");
         cityPicker.equalCityObject.clear();
 
         stateNameTextView.setText(state.getStateName());
@@ -315,6 +319,7 @@ public class HOSPITALDETAILS extends AppCompatActivity implements OnStatePickerL
         for (int j = 0; j < events.length(); j++) {
             JSONObject cit = events.getJSONObject(j);
             City cityData = new City();
+
             cityData.setCityId(Integer.parseInt(cit.getString("id")));
             cityData.setCityName(cit.getString("name"));
             cityData.setStateId(Integer.parseInt(cit.getString("state_id")));

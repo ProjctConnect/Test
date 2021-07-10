@@ -14,23 +14,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name="USER.Verification"></activity>
-        <activity android:name="USER.NavigationActivity" />
-        <activity android:name="HOSPITAL.HOSPITALDETAILS" />
+        <activity android:name="USER.dummy"></activity>
+        <activity android:name="HOSPITAL.Hospitalupdateprofile" />
         <activity android:name="HOSPITAL.HospitalNavigationActivity" />
-        <activity android:name="HOSPITAL.HospitalRegister" />
         <activity android:name="HOSPITAL.HospitalVerification" />
+        <activity android:name="HOSPITAL.HospitalRegister" />
         <activity android:name="HOSPITAL.HospitalLogin" />
+        <activity android:name="USER.UpdateProfile" />
         <activity android:name="USER.Showuser" />
         <activity android:name="USER.Profile" />
+        <activity android:name="USER.Guidelines" />
+        <activity android:name="USER.Verification" />
         <activity android:name="USER.Login" />
         <activity android:name="USER.Registration" />
+        <activity android:name="USER.confirmation2" />
+        <activity android:name="USER.BookingHistory" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
 
+        <activity android:name="USER.Map" />
+        <activity android:name="USER.ConfirmationActivity" />
+        <activity android:name="USER.NavigationActivity" />
+        <activity android:name="USER.content" />
+        <activity android:name="HOSPITAL.Showdet" />
+        <activity android:name="HOSPITAL.DATABEDS" />
+        <activity android:name="HOSPITAL.HOSPITALDETAILS" />
         <activity android:name="HOSPITAL.REGandLOG" />
+        <activity android:name="USER.details" />
         <activity android:name="USER.R_AND_L" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">

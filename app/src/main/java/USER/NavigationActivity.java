@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,8 +18,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.covidcare.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-
-import HOSPITAL.HospitalShowProfile;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -45,7 +42,42 @@ public class NavigationActivity extends AppCompatActivity {
 
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
         firebaseAuth=FirebaseAuth.getInstance();
+        hospitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, details.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
 
+            }
+        });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, UpdateProfile.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, BookingHistory.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
+        guidelines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NavigationActivity.this, Guidelines.class);
+                intent.putExtra("gmail",gmail);
+                startActivity(intent);
+
+            }
+        });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,15 +91,21 @@ public class NavigationActivity extends AppCompatActivity {
                         break;
 
                     case R.id.searchhosp:
-                        Toast.makeText(NavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent1=new Intent(getApplicationContext(),details.class);
+                        intent1.putExtra("gmail",gmail);
+                        startActivity(intent1);
                         break;
 
                     case R.id.update:
-                        Toast.makeText(NavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent2=new Intent(getApplicationContext(),UpdateProfile.class);
+                        intent2.putExtra("gmail",gmail);
+                        startActivity(intent2);
                         break;
 
                     case R.id.booking:
-                        Toast.makeText(NavigationActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent3=new Intent(getApplicationContext(),BookingHistory.class);
+                        intent3.putExtra("gmail",gmail);
+                        startActivity(intent3);
                         break;
 
                     case R.id.logout:

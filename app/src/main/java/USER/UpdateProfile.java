@@ -23,8 +23,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -37,45 +37,80 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Profile extends AppCompatActivity {
+public class UpdateProfile extends AppCompatActivity {
     EditText username,userage,usernumber,useraddress,usermail;
-    String name,number,age,address,mail,password;
-    Button save;
-    String gmail;
+    String name,number,age,address,mail;
     ImageView profilephoto;
-    ProgressBar progressBar;
-    DocumentReference documentReference;
+    Button update;
     StorageReference storageReference;
-    FirebaseAuth firebaseAuth;
+    DocumentReference documentReference;
+    ProgressBar progressBar;
+    String gmailid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        username=findViewById(R.id.username);
-        userage=findViewById(R.id.userage);
-        usernumber=findViewById(R.id.usernumber);
-        useraddress=findViewById(R.id.useraddress);
-        usermail=findViewById(R.id.usermail);
-        save=findViewById(R.id.profile);
-        progressBar = (ProgressBar)findViewById(R.id.progressbar1);
+        setContentView(R.layout.activity_update_profile);
+        username=findViewById(R.id.etname);
+        userage=findViewById(R.id.etage);
+        usernumber=findViewById(R.id.etnumber);
+        useraddress=findViewById(R.id.etaddress);
+        usermail=findViewById(R.id.etmail);
+        profilephoto=findViewById(R.id.etprofile);
+        progressBar = (ProgressBar)findViewById(R.id.progressbar2);
         Sprite doubleBounce = new Wave();
         progressBar.setIndeterminateDrawable(doubleBounce);
-        profilephoto=findViewById(R.id.profilephoto);
-        storageReference=FirebaseStorage.getInstance().getReference();
+        update=findViewById(R.id.updateprofile);
+        documentReference= FirebaseFirestore.getInstance().collection("user").document();
+        gmailid=getIntent().getStringExtra("gmail");
+        usermail.setText(gmailid);
+        progressBar.setVisibility(View.VISIBLE);
+
+        storageReference =FirebaseStorage.getInstance().getReference().child(gmailid+"/profile.jpg");
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profilephoto, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+
+                    }
+                });
+            }
+        });
+
+        documentReference=FirebaseFirestore.getInstance().collection("user").document(gmailid);
+        documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String name=documentSnapshot.getString("name");
+                String age=documentSnapshot.getString("age");
+                String number=documentSnapshot.getString("phone");
+                String address=documentSnapshot.getString("address");
+                String mail=documentSnapshot.getString("email");
+                username.setText(name);
+                userage.setText(age);
+                usernumber.setText(number);
+                useraddress.setText(address);
+                usermail.setText(mail);
+
+            }
+        });
+
+        gmailid=getIntent().getStringExtra("gmail");
 
 
-        gmail=getIntent().getStringExtra("gmail");
-        password=getIntent().getStringExtra("password");
-        usermail.setText(gmail);
-        StorageReference profile=storageReference.child(gmail+"/profile.jpg");
 
 
 
 
 
-
-        save.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -108,17 +143,16 @@ public class Profile extends AppCompatActivity {
                 Map<String, Object> userprofile = new HashMap<>();
                 userprofile.put("name",name);
                 userprofile.put("age",age);
-                userprofile.put("email",mail);
                 userprofile.put("phone",number);
                 userprofile.put("address",address);
-                documentReference= FirebaseFirestore.getInstance().collection("user").document(gmail);
+                userprofile.put("email",mail);
+                documentReference= FirebaseFirestore.getInstance().collection("user").document(gmailid);
                 documentReference.set(userprofile).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(getApplicationContext(),Verification.class);
-                        intent.putExtra("gmail",gmail);
-                        intent.putExtra("password",password);
+                        Toast.makeText(UpdateProfile.this, "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(),NavigationActivity.class);
+                        intent.putExtra("gmailid",gmailid);
                         intent.putExtra("name",name);
                         startActivity(intent);
                         finish();
@@ -142,7 +176,6 @@ public class Profile extends AppCompatActivity {
 
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -152,40 +185,40 @@ public class Profile extends AppCompatActivity {
                 //profilephoto.setImageURI(imageuri);
                 uploaddatatofirebase(imageuri);
                 progressBar.setVisibility(View.VISIBLE);
-
             }
         }
     }
 
     private void uploaddatatofirebase(Uri imageuri) {
-        final  StorageReference file=storageReference.child(gmail+"/profile.jpg");
+        final  StorageReference file=storageReference;
         file.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-              file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                  @Override
-                  public void onSuccess(Uri uri) {
-                      Picasso.get().load(uri).into(profilephoto, new Callback() {
-                          @Override
-                          public void onSuccess() {
-                              progressBar.setVisibility(View.INVISIBLE);
-                          }
+                file.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profilephoto, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
 
-                          @Override
-                          public void onError(Exception e) {
+                            @Override
+                            public void onError(Exception e) {
 
-                          }
-                      });
+                            }
+                        });
 
-
-                  }
-              });
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(Profile.this, "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateProfile.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
+
+
