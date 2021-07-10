@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="USER.Verification">
+    tools:context="HOSPITAL.HospitalVerification">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         app:lottie_fileName="paper.json"
         app:lottie_loop="true" />
     <EditText
-        android:id="@+id/verify"
+        android:id="@+id/verify1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -56,7 +56,7 @@
         android:textColor="@color/black"
         android:textColorHint="#8F000000" />
     <TextView
-        android:id="@+id/confirmation"
+        android:id="@+id/confirmation1"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -70,7 +70,7 @@
         android:textStyle="bold"
         android:textColorHint="#8F000000" />
     <Button
-        android:id="@+id/verifybtn"
+        android:id="@+id/verifybtn1"
         android:layout_width="336dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
@@ -82,7 +82,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/relative">
+        android:id="@+id/relative1">
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="316dp"
             android:layout_height="202dp"
@@ -94,7 +94,7 @@
 
     </RelativeLayout>
     <TextView
-        android:id="@+id/sent"
+        android:id="@+id/sent1"
         android:layout_width="336dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

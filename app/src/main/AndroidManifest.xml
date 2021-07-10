@@ -19,6 +19,7 @@
         <activity android:name="HOSPITAL.HOSPITALDETAILS" />
         <activity android:name="HOSPITAL.HospitalNavigationActivity" />
         <activity android:name="HOSPITAL.HospitalRegister" />
+        <activity android:name="HOSPITAL.HospitalVerification" />
         <activity android:name="HOSPITAL.HospitalLogin" />
         <activity android:name="USER.Profile" />
         <activity android:name="USER.Login" />

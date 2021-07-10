@@ -82,9 +82,9 @@ public class HospitalLogin extends AppCompatActivity {
                             }
 
                         }else{
-                            Intent intent=new Intent(getApplicationContext(),HOSPITALDETAILS.class);
+                            Intent intent=new Intent(getApplicationContext(),HospitalVerification.class);
                             intent.putExtra("gmail",gmail);
-                            intent.putExtra("password",password1);
+                            intent.putExtra("pass",password1);
                             startActivity(intent);
                             finish();
                             Toast.makeText(getApplicationContext(), "verification link has been sent", Toast.LENGTH_SHORT).show();
